@@ -9,7 +9,6 @@
 
 <Scan_Record>
   <Tab>
-    <Do t="button"/>
     <ID f="id notnull"/>
     <Attach_New_Files t="button"/>
     <File_Type>
