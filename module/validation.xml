@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ValidationSchema>
-  <ArchaeologicalElement name="Tab_Group">
+  <ArchaeologicalElement name="Scan_Record">
     <property name="ID">
       <validator type="blankchecker">
         <param value="measure" type="field"/>

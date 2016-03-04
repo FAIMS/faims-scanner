@@ -143,6 +143,12 @@ getDropdownItemValue() {
   return dropdownItemValue;
 }
 
+addOnEvent("Scan_Record/Tab/File_Type", "click", "dropdownItemValue = getFieldValue(\"Scan_Record/Tab/File_Type\")");
+addOnEvent("Scan_Record/Tab/Language", "click", "dropdownItemValue = getFieldValue(\"Scan_Record/Tab/Language\")");
+addOnEvent("Scan_Record/Tab/Repository", "click", "dropdownItemValue = getFieldValue(\"Scan_Record/Tab/Repository\")");
+addOnEvent("Scan_Record/Tab/Garrison", "click", "dropdownItemValue = getFieldValue(\"Scan_Record/Tab/Garrison\")");
+addOnEvent("Scan_Record/Tab/Theme", "click", "dropdownItemValue = getFieldValue(\"Scan_Record/Tab/Theme\")");
+addOnEvent("Scan_Record/Tab/Sub-Theme", "click", "dropdownItemValue = getFieldValue(\"Scan_Record/Tab/Sub-Theme\")");
 
 /******************************************************************************/
 /*                                 ACTION BAR                                 */
@@ -459,6 +465,12 @@ makeVocab(String type, String path, String attrib, List vocabExclusions, String 
       }
     });
 }
+makeVocab("DropDown", "Scan_Record/Tab/File_Type", "File Type");
+makeVocab("DropDown", "Scan_Record/Tab/Language", "Language");
+makeVocab("DropDown", "Scan_Record/Tab/Repository", "Repository");
+makeVocab("DropDown", "Scan_Record/Tab/Garrison", "Garrison");
+makeVocab("DropDown", "Scan_Record/Tab/Theme", "Theme");
+makeVocab("HierarchicalDropDown", "Scan_Record/Tab/Sub-Theme", "Sub-Theme");
 
 
 /******************************************************************************/
@@ -527,10 +539,10 @@ validateFields(List fields, String format) {
   return out;
 }
 
-validateTabGroup() {
+validateScanRecord() {
   List f = new ArrayList(); // Fields to be validated
 
-  f.add(fieldPair("Tab_Group/Tab/ID", "{ID}"));
+  f.add(fieldPair("Scan_Record/Tab/ID", "{ID}"));
 
   String validationMessage = validateFields(f, "PLAINTEXT");
   showWarning("Validation Results", validationMessage);
@@ -622,16 +634,16 @@ populateAuthorAndTimestamp(String tabgroup) {
   fetchOne(q, callback);
 }
 
-onShowTabGroup () {
+onShowScanRecord () {
   // TODO: Add some things which should happen when this tabgroup is shown
-  saveTabGroup("Tab_Group");
+  saveTabGroup("Scan_Record");
 }
 
-addOnEvent("Tab_Group", "show", "onShowTabGroup()");
+addOnEvent("Scan_Record", "show", "onShowScanRecord()");
 
 onClickUserUsers () {
   // TODO: Add some things which should happen when this element is clicked
-  newTabGroup();
+  newScanRecord();
 }
 
 addOnEvent("User/User/Users", "click", "onClickUserUsers()");
@@ -640,7 +652,7 @@ addOnEvent("User/User/Users", "click", "onClickUserUsers()");
 /******************************************************************************/
 /*                   AUDIO, CAMERA, FILE AND VIDEO BINDINGS                   */
 /******************************************************************************/
-addOnEvent("Tab_Group/Files/Button_Files", "click", "attachFileTo(\"Tab_Group/Files/Files\")");
+addOnEvent("Scan_Record/Files/Button_Files", "click", "attachFileTo(\"Scan_Record/Files/Files\")");
 
 /******************************************************************************/
 /*                             NAVIGATION DRAWER                              */
@@ -655,7 +667,7 @@ removeNavigationButtons() {
 addNavigationButtons(String tabgroup) {
   removeNavigationButtons();
   List tabgroupsToValidate = new ArrayList();
-  tabgroupsToValidate.add("Tab_Group");
+  tabgroupsToValidate.add("Scan_Record");
 
   addNavigationButton("new", new ActionButtonCallback() {
     actionOnLabel() {
@@ -848,8 +860,8 @@ loadEntityFrom(String entityID) {
   });
 }
 
-newTabGroup(){
-  String tabgroup = "Tab_Group";
+newScanRecord(){
+  String tabgroup = "Scan_Record";
 
 
   setUuid(tabgroup, null);
@@ -857,14 +869,14 @@ newTabGroup(){
 
 }
 
-duplicateTabGroup(){
-  String tabgroup = "Tab_Group";
+duplicateScanRecord(){
+  String tabgroup = "Scan_Record";
   String uuidOld = getUuid(tabgroup);
 
   disableAutoSave(tabgroup);
 
 
-  populateFileList("Tab_Group/Files/Files", new ArrayList());
+  populateFileList("Scan_Record/Files/Files", new ArrayList());
 
 
   saveCallback = new SaveCallback() {
@@ -902,18 +914,18 @@ duplicateTabGroup(){
   });
 }
 
-deleteTabGroup(){
-  String tabgroup = "Tab_Group";
+deleteScanRecord(){
+  String tabgroup = "Scan_Record";
 
   if (isNull(getUuid(tabgroup))) {
     cancelTabGroup(tabgroup, true);
   } else {
-    showAlert("{Confirm_Deletion}", "{Press_OK_to_Delete_this_Record}", "reallyDeleteTabGroup()", "doNotDelete()");
+    showAlert("{Confirm_Deletion}", "{Press_OK_to_Delete_this_Record}", "reallyDeleteScanRecord()", "doNotDelete()");
   }
 }
 
-reallyDeleteTabGroup(){
-  String tabgroup = "Tab_Group";
+reallyDeleteScanRecord(){
+  String tabgroup = "Scan_Record";
   deleteArchEnt(getUuid(tabgroup));
   cancelTabGroup(tabgroup, false);
 }
@@ -923,19 +935,24 @@ doNotDelete(){
   showToast("{Delete_Cancelled}");
 }
 addOnEvent("User", "show", "removeNavigationButtons()");
-addOnEvent("Tab_Group", "show", "addNavigationButtons(\"Tab_Group\")");
+addOnEvent("Scan_Record", "show", "addNavigationButtons(\"Scan_Record\")");
 
 /******************************************************************************/
 /*                             HANDWRITTEN LOGIC                              */
 /******************************************************************************/
 
-  addOnEvent("Tab_Group/Tab/Attach_New_Files", "click", "attachNewFiles()");
+  addOnEvent("Scan_Record/Tab/Attach_New_Files", "click", "attachNewFiles()");
 
   lastFileList = new ArrayList();
 
   getFileList() {
-   String  dirPath   = "/sdcard/Pictures/Screenshots";
+    // TODO make sure this doesn't choke if dir doesn't exist
+    String dirPath   = "/sdcard/DCIM/AZCamera";
     File   dir       = new File(dirPath);
+    if (!dir.exists()) {
+      return new ArrayList();
+    }
+
     File[] fileArray = dir.listFiles();
     List   files     = Arrays.asList(fileArray);
            files     = new ArrayList(files);       // This makes `files` mutable
@@ -950,7 +967,7 @@ addOnEvent("Tab_Group", "show", "addNavigationButtons(\"Tab_Group\")");
 
   attachAll(files) {
     for (i = 0; i < files.size(); i++) {
-      ref      = "Tab_Group/Files/Files";
+      ref      = "Scan_Record/Files/Files";
       filePath = files.get(i).getAbsolutePath();
       addFile(ref, filePath);
     }
@@ -966,15 +983,63 @@ addOnEvent("Tab_Group", "show", "addNavigationButtons(\"Tab_Group\")");
     lastFileList = thisFileList;
 
     if (newFiles.size() == 0) {
-      showWarning("No new files", "");
+      showWarning("No new files found", "");
     } else {
       attachAll(newFiles);
       s = fileListToString(newFiles);
       showWarning("New files found", s);
     }
 
-    saveTabGroup("Tab_Group");
+    //saveTabGroup("Scan_Record");
     return newFiles;
+  }
+
+/*************************** PERIOD INITIALISATION ****************************/
+  addOnEvent("Scan_Record", "show", "initialisePeriods()");
+
+  initialisePeriods() {
+    setFieldValue("Scan_Record/Tab/Period_From", "07/07/1937");
+    setFieldValue("Scan_Record/Tab/Period_Till", "02/09/1945");
+  }
+
+/************************** SUB-THEME INPUT: "OTHER" **************************/
+  addOnEvent("Scan_Record/Tab/Sub-Theme", "click", "checkForMoreInput()");
+
+  subThemeVocab = new ArrayList();
+  fetchVocab("Sub-Theme", subThemeVocab, "getOtherVocabId()");
+
+  otherVocabIds = new ArrayList();
+  getOtherVocabId() {
+    for (vocabEntry : subThemeVocab) {
+      vocabId   = vocabEntry.get(0);
+      vocabName = vocabEntry.get(1);
+      if (vocabName.equals("{Other}")) {
+        otherVocabIds.add(vocabId);
+      }
+    }
+  }
+
+  checkForMoreInput() {
+    ref = "Scan_Record/Tab/Sub-Theme";
+    val = getFieldValue(ref);
+    if (otherVocabIds.contains(val)) {
+      cb = "getMoreInput()";
+      showTextAlert("You selected '{Other}'", "Please enter a sub-theme", cb, "");
+    } else {
+      clearMoreInput();
+    }
+  }
+
+  getMoreInput() {
+    ref   = "Scan_Record/Tab/Sub-Theme";
+    input = getLastTextAlertInput();
+    setFieldAnnotation(ref, input);
+  }
+
+  clearMoreInput() {
+    ref   = "Scan_Record/Tab/Sub-Theme";
+    input = "";
+    setFieldAnnotation(ref, input);
   }
 
 /******************************************************************************/

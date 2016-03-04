@@ -21,19 +21,32 @@
               <Users/>
             </User>
           </User>
-          <Tab_Group>
+          <Scan_Record>
             <Tab>
+              <Do/>
               <ID/>
               <Attach_New_Files/>
+              <File_Type/>
+              <Language/>
+              <Repository/>
+              <Garrison/>
+              <Period_From/>
+              <Period_Till/>
+              <Doc_Name/>
+              <File_Reference/>
+              <Theme/>
+              <Sub-Theme/>
             </Tab>
             <Files>
               <Files/>
               <Button_Files/>
             </Files>
-          </Tab_Group>
+          </Scan_Record>
           <logic/>
         </faims>
       </instance>
+      <bind type="date" nodeset="/faims/Scan_Record/Tab/Period_From"/>
+      <bind type="date" nodeset="/faims/Scan_Record/Tab/Period_Till"/>
     </model>
   </h:head>
   <h:body>
@@ -60,7 +73,7 @@
     </group>
     <group ref="User">
       <label>{User}</label>
-      <group ref="User">
+      <group ref="User" faims_scrollable="false">
         <label>{User}</label>
         <select1 appearance="compact" ref="Users">
           <label>{Users}</label>
@@ -72,10 +85,13 @@
         </select1>
       </group>
     </group>
-    <group ref="Tab_Group" faims_archent_type="Tab Group">
-      <label>{Tab_Group}</label>
+    <group ref="Scan_Record" faims_archent_type="Scan Record">
+      <label>{Scan_Record}</label>
       <group ref="Tab">
         <label>{Tab}</label>
+        <trigger ref="Do">
+          <label>{Do}</label>
+        </trigger>
         <input faims_attribute_type="measure" ref="ID" faims_attribute_name="ID" faims_style_class="required">
           <label>{ID}</label>
           <!--WARNING: No type t was given for this view; assuming it is an input-->
@@ -83,6 +99,70 @@
         <trigger ref="Attach_New_Files">
           <label>{Attach_New_Files}</label>
         </trigger>
+        <select1 faims_attribute_type="vocab" ref="File_Type" faims_attribute_name="File Type">
+          <label>{File_Type}</label>
+          <!--WARNING: No type t was given for this view; assuming it is a dropdown-->
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
+        <select1 faims_attribute_type="vocab" ref="Language" faims_attribute_name="Language">
+          <label>{Language}</label>
+          <!--WARNING: No type t was given for this view; assuming it is a dropdown-->
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
+        <select1 faims_attribute_type="vocab" ref="Repository" faims_attribute_name="Repository">
+          <label>{Repository}</label>
+          <!--WARNING: No type t was given for this view; assuming it is a dropdown-->
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
+        <select1 faims_attribute_type="vocab" ref="Garrison" faims_attribute_name="Garrison">
+          <label>{Garrison}</label>
+          <!--WARNING: No type t was given for this view; assuming it is a dropdown-->
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
+        <input faims_attribute_type="measure" ref="Period_From" faims_attribute_name="Period From">
+          <label>{Period_From}</label>
+          <!--WARNING: No type t was given for this view; assuming it is an input-->
+        </input>
+        <input faims_attribute_type="measure" ref="Period_Till" faims_attribute_name="Period Till">
+          <label>{Period_Till}</label>
+          <!--WARNING: No type t was given for this view; assuming it is an input-->
+        </input>
+        <input faims_attribute_type="measure" ref="Doc_Name" faims_attribute_name="Doc Name">
+          <label>{Doc_Name}</label>
+          <!--WARNING: No type t was given for this view; assuming it is an input-->
+        </input>
+        <input faims_attribute_type="measure" ref="File_Reference" faims_attribute_name="File Reference">
+          <label>{File_Reference}</label>
+          <!--WARNING: No type t was given for this view; assuming it is an input-->
+        </input>
+        <select1 faims_attribute_type="vocab" ref="Theme" faims_attribute_name="Theme">
+          <label>{Theme}</label>
+          <!--WARNING: No type t was given for this view; assuming it is a dropdown-->
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
+        <select1 faims_attribute_type="vocab" ref="Sub-Theme" faims_attribute_name="Sub-Theme">
+          <label>{Sub-Theme}</label>
+          <!--WARNING: No type t was given for this view; assuming it is a dropdown-->
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
       </group>
       <group ref="Files" faims_hidden="true">
         <label>{Files}</label>
