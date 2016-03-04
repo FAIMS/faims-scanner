@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:jr="http://openrosa.org/javarosa" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Fill This In</h:title>
+    <model>
+      <instance>
+        <faims id="Fill_This_In">
+          <style>
+            <orientation>
+              <orientation/>
+            </orientation>
+            <even>
+              <layout_weight/>
+            </even>
+            <large>
+              <layout_weight/>
+            </large>
+          </style>
+          <User>
+            <User>
+              <Users/>
+            </User>
+          </User>
+          <Tab_Group>
+            <Tab>
+              <ID/>
+              <Attach_New_Files/>
+            </Tab>
+            <Files>
+              <Files/>
+              <Button_Files/>
+            </Files>
+          </Tab_Group>
+          <logic/>
+        </faims>
+      </instance>
+    </model>
+  </h:head>
+  <h:body>
+    <group ref="style">
+      <label/>
+      <group ref="orientation">
+        <label/>
+        <input ref="orientation">
+          <label>horizontal</label>
+        </input>
+      </group>
+      <group ref="even">
+        <label/>
+        <input ref="layout_weight">
+          <label>1</label>
+        </input>
+      </group>
+      <group ref="large">
+        <label/>
+        <input ref="layout_weight">
+          <label>3</label>
+        </input>
+      </group>
+    </group>
+    <group ref="User">
+      <label>{User}</label>
+      <group ref="User">
+        <label>{User}</label>
+        <select1 appearance="compact" ref="Users">
+          <label>{Users}</label>
+          <!--WARNING: No type t was given for this view; assuming it is a list-->
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
+      </group>
+    </group>
+    <group ref="Tab_Group" faims_archent_type="Tab Group">
+      <label>{Tab_Group}</label>
+      <group ref="Tab">
+        <label>{Tab}</label>
+        <input faims_attribute_type="measure" ref="ID" faims_attribute_name="ID" faims_style_class="required">
+          <label>{ID}</label>
+          <!--WARNING: No type t was given for this view; assuming it is an input-->
+        </input>
+        <trigger ref="Attach_New_Files">
+          <label>{Attach_New_Files}</label>
+        </trigger>
+      </group>
+      <group ref="Files" faims_hidden="true">
+        <label>{Files}</label>
+        <select type="file" faims_attribute_type="measure" faims_sync="true" ref="Files" faims_attribute_name="Files">
+          <label>{Files}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
+        <trigger ref="Button_Files">
+          <label>{Button_Files}</label>
+        </trigger>
+      </group>
+    </group>
+  </h:body>
+</h:html>

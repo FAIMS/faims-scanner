@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<module>
+
+<User f="nodata">
+  <User f="noscroll">
+    <Users f="user" l="Tab_Group"/>
+  </User>
+</User>
+
+<Tab_Group>
+  <Tab>
+    <ID f="id notnull"/>
+    <Attach_New_Files t="button"/>
+  </Tab>
+  <Files f="hidden">
+    <Files t="file"/>
+  </Files>
+</Tab_Group>
+
+<logic><![CDATA[
+  addOnEvent("Tab_Group/Tab/Attach_New_Files", "click", "attachNewFiles()");
+
+  lastFileList = new ArrayList();
+
+  getFileList() {
+   String  dirPath   = "/sdcard/Pictures/Screenshots";
+    File   dir       = new File(dirPath);
+    File[] fileArray = dir.listFiles();
+    List   files     = Arrays.asList(fileArray);
+           files     = new ArrayList(files);       // This makes `files` mutable
+    return files;
+  }
+
+  fileListToString(files) {
+    String s = "";
+    for (i = 0; i < files.size(); i++) s += files.get(i).getName() + "\n";
+    return s;
+  }
+
+  attachAll(files) {
+    for (i = 0; i < files.size(); i++) {
+      ref      = "Tab_Group/Files/Files";
+      filePath = files.get(i).getAbsolutePath();
+      addFile(ref, filePath);
+    }
+  }
+
+  attachNewFiles() {
+    thisFileList = getFileList();
+
+    newFiles = new ArrayList(thisFileList);
+    newFiles = getFileList();
+    newFiles.removeAll(lastFileList);
+
+    lastFileList = thisFileList;
+
+    if (newFiles.size() == 0) {
+      showWarning("No new files found", "");
+    } else {
+      attachAll(newFiles);
+      s = fileListToString(newFiles);
+      showWarning("New files found", s);
+    }
+
+    saveTabGroup("Tab_Group");
+    return newFiles;
+  }
+]]></logic>
+</module>
