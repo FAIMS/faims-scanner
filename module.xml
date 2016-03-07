@@ -1,15 +1,24 @@
 <?xml version="1.0" ?>
+<!--@POSTPROC: ./postproc.sh-->
 <module>
 
 <User f="nodata">
   <User f="noscroll">
-    <Users f="user" l="Scan_Record"/>
+    <Users f="user" l="Control"/>
   </User>
 </User>
 
+<Control f="nodata">
+  <Control>
+    <autonum/>
+    <Create_New_Record t="button" l="Scan_Record"/>
+  </Control>
+  <search/>
+</Control>
+
 <Scan_Record>
   <Tab>
-    <ID f="id notnull"/>
+    <ID f="id notnull autonum"/>
     <Attach_New_Files t="button"/>
     <File_Type>
       <opts>
@@ -229,18 +238,17 @@
       </opts>
     </Sub-Theme>
   </Tab>
-  <Files f="hidden">
+  <Files>
     <Files t="file"/>
   </Files>
 </Scan_Record>
 
 <logic><![CDATA[
+/****************************** RAW ATTACHMENTS *******************************/
   addOnEvent("Scan_Record/Tab/Attach_New_Files", "click", "attachNewFiles()");
-
-  lastFileList = new ArrayList();
+  addOnEvent("Scan_Record", "show", "lastFileList = getFileList()");
 
   getFileList() {
-    // TODO make sure this doesn't choke if dir doesn't exist
     String dirPath   = "/sdcard/DCIM/AZCamera";
     File   dir       = new File(dirPath);
     if (!dir.exists()) {
@@ -284,13 +292,12 @@
       showWarning("New files found", s);
     }
 
-    //saveTabGroup("Scan_Record");
     return newFiles;
   }
 
 /*************************** PERIOD INITIALISATION ****************************/
-  addOnEvent("Scan_Record", "show", "initialisePeriods()");
-
+/* Triggered using @POSTPROC.                                                 */
+/******************************************************************************/
   initialisePeriods() {
     setFieldValue("Scan_Record/Tab/Period_From", "07/07/1937");
     setFieldValue("Scan_Record/Tab/Period_Till", "02/09/1945");

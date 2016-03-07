@@ -11,7 +11,15 @@ mkdir -p wireframeImages
   
   ./makeElement.sh User_User_Users "" list 1 false false false false false wireframeImages/
   
-  ./makeElement.sh Scan_Record_Tab_Do "" button 1 false false false false false wireframeImages/
+  ./makeElement.sh Control_Control_Next_ID "" input 1 false false false true false wireframeImages/
+  
+  ./makeElement.sh Control_Control_Create_New_Record "" button 1 false false false false false wireframeImages/
+  
+  ./makeElement.sh Control_Search_Search_Term "Search Term" input 2 false false false false false wireframeImages/
+  
+  ./makeElement.sh Control_Search_Search_Button "Search" button 2 false false false false false wireframeImages/
+  
+  ./makeElement.sh Control_Search_Entity_List "Entity List" list 1 false false false false false wireframeImages/
   
   ./makeElement.sh Scan_Record_Tab_ID "" input 1 false false true true false wireframeImages/
   

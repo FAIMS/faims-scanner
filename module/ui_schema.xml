@@ -21,9 +21,25 @@
               <Users/>
             </User>
           </User>
+          <Control>
+            <Control>
+              <Next_ID/>
+              <Create_New_Record/>
+            </Control>
+            <Search>
+              <Colgroup_0>
+                <Col_0>
+                  <Search_Term/>
+                </Col_0>
+                <Col_1>
+                  <Search_Button/>
+                </Col_1>
+              </Colgroup_0>
+              <Entity_List/>
+            </Search>
+          </Control>
           <Scan_Record>
             <Tab>
-              <Do/>
               <ID/>
               <Attach_New_Files/>
               <File_Type/>
@@ -45,6 +61,8 @@
           <logic/>
         </faims>
       </instance>
+      <bind type="decimal" nodeset="/faims/Control/Control/Next_ID"/>
+      <bind type="decimal" nodeset="/faims/Scan_Record/Tab/ID"/>
       <bind type="date" nodeset="/faims/Scan_Record/Tab/Period_From"/>
       <bind type="date" nodeset="/faims/Scan_Record/Tab/Period_Till"/>
     </model>
@@ -85,13 +103,47 @@
         </select1>
       </group>
     </group>
+    <group ref="Control">
+      <label>{Control}</label>
+      <group ref="Control">
+        <label>{Control}</label>
+        <input ref="Next_ID" faims_style_class="required">
+          <label>{Next_ID}</label>
+        </input>
+        <trigger ref="Create_New_Record">
+          <label>{Create_New_Record}</label>
+        </trigger>
+      </group>
+      <group ref="Search" faims_scrollable="false">
+        <label>{search}</label>
+        <group faims_style="orientation" ref="Colgroup_0">
+          <label/>
+          <group faims_style="even" ref="Col_0">
+            <label/>
+            <input ref="Search_Term">
+              <label>{Search_Term}</label>
+            </input>
+          </group>
+          <group faims_style="large" ref="Col_1">
+            <label/>
+            <trigger ref="Search_Button">
+              <label>{Search}</label>
+            </trigger>
+          </group>
+        </group>
+        <select1 appearance="compact" ref="Entity_List">
+          <label>{Entity_List}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>Options not loaded</value>
+          </item>
+        </select1>
+      </group>
+    </group>
     <group ref="Scan_Record" faims_archent_type="Scan Record">
       <label>{Scan_Record}</label>
       <group ref="Tab">
         <label>{Tab}</label>
-        <trigger ref="Do">
-          <label>{Do}</label>
-        </trigger>
         <input faims_attribute_type="measure" ref="ID" faims_attribute_name="ID" faims_style_class="required">
           <label>{ID}</label>
           <!--WARNING: No type t was given for this view; assuming it is an input-->
@@ -164,7 +216,7 @@
           </item>
         </select1>
       </group>
-      <group ref="Files" faims_hidden="true">
+      <group ref="Files">
         <label>{Files}</label>
         <select type="file" faims_attribute_type="measure" faims_sync="true" ref="Files" faims_attribute_name="Files">
           <label>{Files}</label>

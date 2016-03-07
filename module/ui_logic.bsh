@@ -643,10 +643,15 @@ addOnEvent("Scan_Record", "show", "onShowScanRecord()");
 
 onClickUserUsers () {
   // TODO: Add some things which should happen when this element is clicked
+  newTab("Control", true);
+}
+onClickControlCreateNewRecord () {
+  // TODO: Add some things which should happen when this element is clicked
   newScanRecord();
 }
 
 addOnEvent("User/User/Users", "click", "onClickUserUsers()");
+addOnEvent("Control/Control/Create_New_Record", "click", "onClickControlCreateNewRecord()");
 
 
 /******************************************************************************/
@@ -863,10 +868,21 @@ loadEntityFrom(String entityID) {
 newScanRecord(){
   String tabgroup = "Scan_Record";
 
+  String autoNumSource = "";
+  autoNumSource = getFieldValue("Control/Control/Next_ID");
+  if (isNull(autoNumSource)) {
+    showWarning("{Alert}","{A_next_ID_has_not_been_entered_please_provide_one}");
+    return;
+  }
 
   setUuid(tabgroup, null);
   newTabGroup(tabgroup);
 
+  String autoNumDest = "";
+  autoNumDest = "Scan_Record/Tab/ID";
+  incAutoNum(autoNumDest);
+
+  initialisePeriods();
 }
 
 duplicateScanRecord(){
@@ -875,6 +891,9 @@ duplicateScanRecord(){
 
   disableAutoSave(tabgroup);
 
+  String autoNumDest = "";
+  autoNumDest = "Scan_Record/Tab/ID";
+  incAutoNum(autoNumDest);
 
   populateFileList("Scan_Record/Files/Files", new ArrayList());
 
@@ -935,18 +954,136 @@ doNotDelete(){
   showToast("{Delete_Cancelled}");
 }
 addOnEvent("User", "show", "removeNavigationButtons()");
+addOnEvent("Control", "show", "removeNavigationButtons()");
 addOnEvent("Scan_Record", "show", "addNavigationButtons(\"Scan_Record\")");
+
+/******************************************************************************/
+/*                                   SEARCH                                   */
+/******************************************************************************/
+addOnEvent("Control/Search"               , "show"  , "search();");
+addOnEvent("Control/Search/Entity_List"   , "click" , "loadEntity();");
+addOnEvent("Control/Search/Search_Button" , "click" , "search()");
+addOnEvent("Control/Search/Search_Term"   , "click" , "clearSearch()");
+
+clearSearch(){
+  setFieldValue("Control/Search/Search_Term","");
+}
+
+search(){
+  String tabgroup = "Control";
+  String refEntityList  = tabgroup + "/Search/Entity_List";
+  String refSearchTerm  = tabgroup + "/Search/Search_Term";
+  String refEntityTypes = tabgroup + "/Search/Entity_Types";
+
+  String type = "";
+  String term = getFieldValue(refSearchTerm);
+  String searchQuery = "SELECT uuid, response "+
+                       "  FROM latestNonDeletedArchEntFormattedIdentifiers  "+
+                       " WHERE uuid in (SELECT uuid "+
+                       "                  FROM latestNonDeletedArchEntIdentifiers "+
+                       "                 WHERE measure LIKE '"+term+"'||'%'  "+
+                       "                   AND ( aenttypename LIKE '"+type+"' OR '' = '"+type+"' ) "+
+                       "                )  "+
+                       " ORDER BY response "+
+                       " LIMIT ? "+
+                       "OFFSET ? ";
+
+  populateCursorList(refEntityList, searchQuery, 25);
+  refreshTabgroupCSS(tabgroup);
+
+  Log.d("Module", "Search query: " + searchQuery);
+}
+
+loadScanRecordFrom(String uuid) {
+  String tabgroup = "Scan_Record";
+  setUuid(tabgroup, uuid);
+  if (isNull(uuid)) return;
+
+  showTabGroup(tabgroup, uuid);
+}
+
+
+/******************************************************************************/
+/*                       AUTONUMBERING HELPER FUNCTIONS                       */
+/******************************************************************************/
+/*
+ * If value of field specified by `ref` is null, sets the field to `defaultVal`,
+ * otherwise increments its value.
+ *
+ * Returns the value the field was updated to.
+ */
+incField(String ref, Integer defaultVal) {
+  String val = getFieldValue(ref);
+
+  if (isNull(val)) {
+    setFieldValue(ref, defaultVal);
+    return defaultVal;
+  }
+
+  Integer inc = Integer.parseInt(val) + 1;
+  setFieldValue(ref, inc);
+  insertIntoLocalSettings(ref, inc.toString());
+
+  return inc;
+}
+
+/* Increments the field at `ref` or returns null if it does not contain a
+ * number.
+ */
+incField(String ref) {
+  return incField(ref, 1);
+}
+
+addOnEvent("Control/Control", "show", "onShowAutonum()");
+
+/* This function should only be called once since it creates event handlers,
+ * otherwise multiple copies of the same handler will trigger with the event.
+ */
+onShowAutonum() {
+  List l = new ArrayList();
+  l.add("Control/Control/Next_ID");
+
+
+  for (ref : l) {
+    loadStartingId(ref);
+  }
+  for (ref : l) {
+    onFocus(ref, null,  "insertIntoLocalSettings(\"" + ref + "\", getFieldValue(\"" + ref + "\"));");
+  }
+}
+
+loadStartingId(String ref) {
+  String idQ = "SELECT value FROM localSettings WHERE key = '" + ref + "';";
+  fetchOne(idQ, new FetchCallback() {
+    onFetch(result) {
+      if (!isNull(result)) {
+        setFieldValue(ref, result.get(0));
+      } else {
+        setFieldValue(ref, "1");
+      }
+    }
+  });
+}
+
+incAutoNum(String destPath) {
+  Map destToSource = new HashMap();
+  destToSource.put("Scan_Record/Tab/ID", "Control/Control/Next_ID");
+
+  String sourcePath = destToSource.get(destPath);
+  String destVal    = getFieldValue(sourcePath);
+  setFieldValue(destPath, destVal);
+  incField(sourcePath);
+}
 
 /******************************************************************************/
 /*                             HANDWRITTEN LOGIC                              */
 /******************************************************************************/
 
+/****************************** RAW ATTACHMENTS *******************************/
   addOnEvent("Scan_Record/Tab/Attach_New_Files", "click", "attachNewFiles()");
-
-  lastFileList = new ArrayList();
+  addOnEvent("Scan_Record", "show", "lastFileList = getFileList()");
 
   getFileList() {
-    // TODO make sure this doesn't choke if dir doesn't exist
     String dirPath   = "/sdcard/DCIM/AZCamera";
     File   dir       = new File(dirPath);
     if (!dir.exists()) {
@@ -990,13 +1127,12 @@ addOnEvent("Scan_Record", "show", "addNavigationButtons(\"Scan_Record\")");
       showWarning("New files found", s);
     }
 
-    //saveTabGroup("Scan_Record");
     return newFiles;
   }
 
 /*************************** PERIOD INITIALISATION ****************************/
-  addOnEvent("Scan_Record", "show", "initialisePeriods()");
-
+/* Triggered using @POSTPROC.                                                 */
+/******************************************************************************/
   initialisePeriods() {
     setFieldValue("Scan_Record/Tab/Period_From", "07/07/1937");
     setFieldValue("Scan_Record/Tab/Period_Till", "02/09/1945");

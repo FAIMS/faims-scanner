@@ -33,6 +33,8 @@
 <arch16n k="{Clean_Synced_Files}"><![CDATA[Clean synced files]]></arch16n>
 <arch16n k="{Colonialism}"><![CDATA[Colonialism]]></arch16n>
 <arch16n k="{Confirm_Deletion}"><![CDATA[Confirm Deletion]]></arch16n>
+<arch16n k="{Control}"><![CDATA[Control]]></arch16n>
+<arch16n k="{Create_New_Record}"><![CDATA[Create New Record]]></arch16n>
 <arch16n k="{Crime_Punishment}"><![CDATA[Crime/Punishment]]></arch16n>
 <arch16n k="{Curriculum}"><![CDATA[Curriculum]]></arch16n>
 <arch16n k="{Delete_Cancelled}"><![CDATA[Delete cancelled]]></arch16n>
@@ -42,7 +44,6 @@
 <arch16n k="{Disable_Sync}"><![CDATA[Disable Sync]]></arch16n>
 <arch16n k="{Doc_Name}"><![CDATA[Doc Name]]></arch16n>
 <arch16n k="{Document}"><![CDATA[Document]]></arch16n>
-<arch16n k="{Do}"><![CDATA[Do]]></arch16n>
 <arch16n k="{Duplicated_record}"><![CDATA[Duplicated record]]></arch16n>
 <arch16n k="{Duplicate}"><![CDATA[Duplicate]]></arch16n>
 <arch16n k="{Easting}"><![CDATA[Easting]]></arch16n>
@@ -119,6 +120,7 @@
 <arch16n k="{Mothers}"><![CDATA[Mothers]]></arch16n>
 <arch16n k="{New}"><![CDATA[New]]></arch16n>
 <arch16n k="{New_record_created}"><![CDATA[New record created]]></arch16n>
+<arch16n k="{Next_ID}"><![CDATA[Next ID]]></arch16n>
 <arch16n k="{no_GPS_position_could_be_found}"><![CDATA[no GPS position could be found]]></arch16n>
 <arch16n k="{Northing}"><![CDATA[Northing]]></arch16n>
 <arch16n k="{Off_base_buildings}"><![CDATA[Off-base buildings]]></arch16n>
@@ -158,6 +160,7 @@
 <arch16n k="{Repository}"><![CDATA[Repository]]></arch16n>
 <arch16n k="{Scan_Record}"><![CDATA[Scan Record]]></arch16n>
 <arch16n k="{Schools}"><![CDATA[Schools]]></arch16n>
+<arch16n k="{search}"><![CDATA[Search]]></arch16n>
 <arch16n k="{Search}"><![CDATA[Search]]></arch16n>
 <arch16n k="{Search_Term}"><![CDATA[Search Term]]></arch16n>
 <arch16n k="{Security}"><![CDATA[Security]]></arch16n>
