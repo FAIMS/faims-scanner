@@ -96,147 +96,183 @@
         <opt>Social</opt>
       </opts>
     </Theme>
-    <Sub-Theme>
+
+    <Sub-Theme_Architecture_Space t="checkbox">
+      Sub-Theme: Architecture/Space
       <opts>
-        <opt>
-          Architecture/Space
-          <opt>Base layout</opt>
-          <opt>Facilities</opt>
-          <opt>Historiography and theory</opt>
-          <opt>One-base buildings</opt>
-          <opt>Off-base buildings</opt>
-          <opt>Security</opt>
-          <opt>Other</opt>
-        </opt>
-        <opt>
-          Crime/Punishment 
-          <opt>Historiography and theory</opt>
-          <opt>Local law</opt>
-          <opt>Military law </opt>
-          <opt>Case law</opt>
-          <opt>Other</opt>
-        </opt>
-        <opt>
-          Economics 
-          <opt>Base</opt>
-          <opt>Historiography and theory</opt>
-          <opt>Local economy </opt>
-          <opt>Shopping </opt>
-          <opt>Withdrawal impact</opt>
-          <opt>Other</opt>
-        </opt>
-        <opt>
-          Education 
-          <opt>Curriculum</opt>
-          <opt>Facilities</opt>
-          <opt>Historiography and theory</opt>
-          <opt>Parents </opt>
-          <opt>Schools</opt>
-          <opt>Students</opt>
-          <opt>Teachers</opt>
-          <opt>Other</opt>
-        </opt>
-        <opt>
-          Gender
-          <opt>Children</opt>
-          <opt>Fathers</opt>
-          <opt>Historiography and theory</opt>
-          <opt>Husbands</opt>
-          <opt>Mothers</opt>
-          <opt>Sexual Relations — with other Australians</opt>
-          <opt>Sexual Relations — with Locally Employed Civilians</opt>
-          <opt>Sexual Relations  — other</opt>
-          <opt>Wives</opt>
-          <opt>Women</opt>
-        </opt>
-        <opt>
-          Host Communities 
-          <opt>Interactions </opt>
-          <opt>Historiography and theory</opt>
-          <opt>Opposition </opt>
-          <opt>Perceptions </opt>
-          <opt>Locally Employed Civilians</opt>
-          <opt>Other </opt>
-        </opt>
-        <opt>
-          Legacy/Remembering 
-          <opt>Australians</opt>
-          <opt>Local community</opt>
-          <opt>Historiography and theory</opt>
-          <opt>Other</opt>
-        </opt>
-        <opt>
-          Media
-          <opt>Electronic — Local</opt>
-          <opt>Electronic — Australian</opt>
-          <opt>Electronic — Other</opt>
-          <opt>Historiography and theory</opt>
-          <opt>Print — Local</opt>
-          <opt>Print — Australian</opt>
-          <opt>Print — Other</opt>
-          <opt>Other</opt>
-        </opt>
-        <opt>
-          Medical 
-          <opt>Case History</opt>
-          <opt>Facilities</opt>
-          <opt>Historiography and theory</opt>
-          <opt>Local communities</opt>
-          <opt>Other </opt>
-        </opt>
-        <opt>
-          Military
-          <opt>Accidents</opt>
-          <opt>Equipment </opt>
-          <opt>Families and dependents</opt>
-          <opt>Historiography and theory</opt>
-          <opt>Host military</opt>
-          <opt>Justice</opt>
-          <opt>Logistics </opt>
-          <opt>Operations</opt>
-          <opt>Personnel</opt>
-          <opt>Other</opt>
-        </opt>
-        <opt>
-          Politics
-          <opt>Colonialism</opt>
-          <opt>Garrison — Establishment </opt>
-          <opt>Garrison — Operation </opt>
-          <opt>Garrison — Withdrawal </opt>
-          <opt>Historiography and theory</opt>
-          <opt>Relations — Bilateral — Singapore</opt>
-          <opt>Relations — Bilateral — Malaysia</opt>
-          <opt>Relations — Bilateral — Hong Kong</opt>
-          <opt>Relations — Bilateral — Japan</opt>
-          <opt>Relations — Bilateral — NZ</opt>
-          <opt>Relations — Bilateral — UK</opt>
-          <opt>Relations — Bilateral — USA</opt>
-          <opt>Relations — Regional</opt>
-          <opt>Relations — International</opt>
-          <opt>White Australia Policy</opt>
-          <opt>Other </opt>
-        </opt>
-        <opt>
-          Race
-          <opt>Interaction/engagement</opt>
-          <opt>Historiography and theory</opt>
-          <opt>Language and terms</opt>
-          <opt>White Australia Policy</opt>
-          <opt>Other</opt>
-        </opt>
-        <opt>
-          Social 
-          <opt>Families</opt>
-          <opt>Food</opt>
-          <opt>Historiography and theory</opt>
-          <opt>Housing</opt>
-          <opt>Interaction/engagement</opt>
-          <opt>Relationships</opt>
-          <opt>Sport</opt>
-          <opt>Other</opt>
-        </opt>
+        <opt>Base layout</opt>
+        <opt>Facilities</opt>
+        <opt>Historiography and theory</opt>
+        <opt>One-base buildings</opt>
+        <opt>Off-base buildings</opt>
+        <opt>Security</opt>
+        <opt>Other</opt>
       </opts>
-    </Sub-Theme>
+    </Sub-Theme_Architecture_Space>
+
+    <Sub-Theme_Crime_Punishment t="checkbox">
+      Sub-Theme: Crime/Punishment
+      <opts>
+        <opt>Historiography and theory</opt>
+        <opt>Local law</opt>
+        <opt>Military law</opt>
+        <opt>Case law</opt>
+        <opt>Other</opt>
+      </opts>
+    </Sub-Theme_Crime_Punishment>
+
+    <Sub-Theme_Economics t="checkbox">
+      Sub-Theme: Economics
+      <opts>
+        <opt>Base</opt>
+        <opt>Historiography and theory</opt>
+        <opt>Local economy</opt>
+        <opt>Shopping</opt>
+        <opt>Withdrawal impact</opt>
+        <opt>Other</opt>
+      </opts>
+    </Sub-Theme_Economics>
+
+    <Sub-Theme_Education t="checkbox">
+      Sub-Theme: Education
+      <opts>
+        <opt>Curriculum</opt>
+        <opt>Facilities</opt>
+        <opt>Historiography and theory</opt>
+        <opt>Parents</opt>
+        <opt>Schools</opt>
+        <opt>Students</opt>
+        <opt>Teachers</opt>
+        <opt>Other</opt>
+      </opts>
+    </Sub-Theme_Education>
+
+    <Sub-Theme_Gender t="checkbox">
+      Sub-Theme: Gender
+      <opts>
+        <opt>Children</opt>
+        <opt>Fathers</opt>
+        <opt>Historiography and theory</opt>
+        <opt>Husbands</opt>
+        <opt>Mothers</opt>
+        <opt>Sexual Relations — with other Australians</opt>
+        <opt>Sexual Relations — with Locally Employed Civilians</opt>
+        <opt>Sexual Relations — other</opt>
+        <opt>Wives</opt>
+        <opt>Women</opt>
+      </opts>
+    </Sub-Theme_Gender>
+
+    <Sub-Theme_Host_Communities t="checkbox">
+      Sub-Theme: Host Communities
+      <opts>
+        <opt>Interactions</opt>
+        <opt>Historiography and theory</opt>
+        <opt>Opposition</opt>
+        <opt>Perceptions</opt>
+        <opt>Locally Employed Civilians</opt>
+        <opt>Other</opt>
+      </opts>
+    </Sub-Theme_Host_Communities>
+
+    <Sub-Theme_Legacy_Remembering t="checkbox">
+      Sub-Theme: Legacy/Remembering
+      <opts>
+        <opt>Australians</opt>
+        <opt>Local community</opt>
+        <opt>Historiography and theory</opt>
+        <opt>Other</opt>
+      </opts>
+    </Sub-Theme_Legacy_Remembering>
+
+    <Sub-Theme_Media t="checkbox">
+      Sub-Theme: Media
+      <opts>
+        <opt>Electronic — Local</opt>
+        <opt>Electronic — Australian</opt>
+        <opt>Electronic — Other</opt>
+        <opt>Historiography and theory</opt>
+        <opt>Print — Local</opt>
+        <opt>Print — Australian</opt>
+        <opt>Print — Other</opt>
+        <opt>Other</opt>
+      </opts>
+    </Sub-Theme_Media>
+
+    <Sub-Theme_Medical t="checkbox">
+      Sub-Theme: Medical
+      <opts>
+        <opt>Case History</opt>
+        <opt>Facilities</opt>
+        <opt>Historiography and theory</opt>
+        <opt>Local communities</opt>
+        <opt>Other</opt>
+      </opts>
+    </Sub-Theme_Medical>
+
+    <Sub-Theme_Military t="checkbox">
+      Sub-Theme: Military
+      <opts>
+        <opt>Accidents</opt>
+        <opt>Equipment</opt>
+        <opt>Families and dependents</opt>
+        <opt>Historiography and theory</opt>
+        <opt>Host military</opt>
+        <opt>Justice</opt>
+        <opt>Logistics</opt>
+        <opt>Operations</opt>
+        <opt>Personnel</opt>
+        <opt>Other</opt>
+      </opts>
+    </Sub-Theme_Military>
+
+    <Sub-Theme_Politics t="checkbox">
+      Sub-Theme: Politics
+      <opts>
+        <opt>Colonialism</opt>
+        <opt>Garrison — Establishment</opt>
+        <opt>Garrison — Operation</opt>
+        <opt>Garrison — Withdrawal</opt>
+        <opt>Historiography and theory</opt>
+        <opt>Relations — Bilateral — Singapore</opt>
+        <opt>Relations — Bilateral — Malaysia</opt>
+        <opt>Relations — Bilateral — Hong Kong</opt>
+        <opt>Relations — Bilateral — Japan</opt>
+        <opt>Relations — Bilateral — NZ</opt>
+        <opt>Relations — Bilateral — UK</opt>
+        <opt>Relations — Bilateral — USA</opt>
+        <opt>Relations — Regional</opt>
+        <opt>Relations — International</opt>
+        <opt>White Australia Policy</opt>
+        <opt>Other</opt>
+      </opts>
+    </Sub-Theme_Politics>
+
+    <Sub-Theme_Race t="checkbox">
+      Sub-Theme: Race
+      <opts>
+        <opt>Interaction/engagement</opt>
+        <opt>Historiography and theory</opt>
+        <opt>Language and terms</opt>
+        <opt>White Australia Policy</opt>
+        <opt>Other</opt>
+      </opts>
+    </Sub-Theme_Race>
+
+    <Sub-Theme_Social t="checkbox">
+      Sub-Theme: Social
+      <opts>
+        <opt>Families</opt>
+        <opt>Food</opt>
+        <opt>Historiography and theory</opt>
+        <opt>Housing</opt>
+        <opt>Interaction/engagement</opt>
+        <opt>Relationships</opt>
+        <opt>Sport</opt>
+        <opt>Other</opt>
+      </opts>
+    </Sub-Theme_Social>
+
   </Tab>
   <Files>
     <Files t="file"/>
@@ -263,7 +299,8 @@
 
   fileListToString(files) {
     String s = "";
-    for (i = 0; i < files.size(); i++) s += files.get(i).getName() + "\n";
+    for (i = 0; i < files.size(); i++)
+      s += files.get(i).getName() + "\n";
     return s;
   }
 
@@ -299,18 +336,62 @@
 /* Triggered using @POSTPROC.                                                 */
 /******************************************************************************/
   initialisePeriods() {
+    tabgroup = "Scan_Record";
     setFieldValue("Scan_Record/Tab/Period_From", "07/07/1937");
     setFieldValue("Scan_Record/Tab/Period_Till", "02/09/1945");
+    keepTabGroupChanges(tabgroup);
   }
 
 /************************** SUB-THEME INPUT: "OTHER" **************************/
-  addOnEvent("Scan_Record/Tab/Sub-Theme", "click", "checkForMoreInput()");
+  //addOnEvent("Scan_Record", "show", "initialiseSelected()");
 
-  subThemeVocab = new ArrayList();
-  fetchVocab("Sub-Theme", subThemeVocab, "getOtherVocabId()");
+  subThemePostfixes = new ArrayList();
+  subThemePostfixes.add("Architecture_Space");
+  subThemePostfixes.add("Crime_Punishment");
+  subThemePostfixes.add("Economics");
+  subThemePostfixes.add("Education");
+  subThemePostfixes.add("Gender");
+  subThemePostfixes.add("Host_Communities");
+  subThemePostfixes.add("Legacy_Remembering");
+  subThemePostfixes.add("Media");
+  subThemePostfixes.add("Medical");
+  subThemePostfixes.add("Military");
+  subThemePostfixes.add("Politics");
+  subThemePostfixes.add("Race");
+  subThemePostfixes.add("Social");
 
-  otherVocabIds = new ArrayList();
-  getOtherVocabId() {
+  otherWasSelected = new HashMap();
+  initialiseSelected() {
+    initialiseSelected(null);
+  }
+  initialiseSelected(attributes) {
+    for (postfix : subThemePostfixes) {
+      otherWasSelected.put(postfix, false);
+    }
+
+    if (attributes == null)
+      return;
+    for (a : attributes) {
+      for (postfix : subThemePostfixes) {
+        propertyName = "Sub-Theme " + postfix.replaceAll("_", " ");
+        vocabId      = a.getValue("vocab");
+        if (!a.getName().equals(propertyName)) continue;
+
+        if (otherVocabIds.contains(vocabId)) {
+          otherWasSelected.put(postfix, true);
+        }
+      }
+    }
+  }
+
+  subThemeVocab = Collections.synchronizedList(new ArrayList());
+  for (postfix : subThemePostfixes) {
+    propertyName = "Sub-Theme " + postfix.replaceAll("_", " ");
+    fetchVocab(propertyName, subThemeVocab, "getOtherVocabIds()");
+  }
+
+  otherVocabIds = Collections.synchronizedSet(new HashSet());
+  getOtherVocabIds() {
     for (vocabEntry : subThemeVocab) {
       vocabId   = vocabEntry.get(0);
       vocabName = vocabEntry.get(1);
@@ -320,27 +401,49 @@
     }
   }
 
-  checkForMoreInput() {
-    ref = "Scan_Record/Tab/Sub-Theme";
+  // Returns true IFF `As` contains any of the elements in `Bs`.
+  containsAnyOf(As, Bs) {
+    for (b : Bs)
+      if (containsString(As, b))
+        return true;
+    return false;
+  }
+
+  // Returns true IFF the list of NameValuePair objects in `As` has an element
+  // whose getName method returns a string equal to `s`.
+  containsString(As, s) {
+    for (a : As) {
+      if (a.getName().equals(s))
+        return true;
+    }
+    return false;
+  }
+
+  requestMoreInput(subThemePostfix) {
+    ref = "Scan_Record/Tab/Sub-Theme_" + subThemePostfix;
     val = getFieldValue(ref);
-    if (otherVocabIds.contains(val)) {
-      cb = "getMoreInput()";
-      showTextAlert("You selected '{Other}'", "Please enter a sub-theme", cb, "");
+
+    if (containsAnyOf(val, otherVocabIds)) {
+      if (!otherWasSelected.get(subThemePostfix)) {
+        otherWasSelected.put(subThemePostfix, true);
+
+        head  = "Additional Input Required...";
+        body  = "You selected 'Other'. Please provide an annotation on the ";
+        body += "box you checked to specify a sub-theme.";
+
+        showWarning(head, body);
+      }
     } else {
-      clearMoreInput();
+      otherWasSelected.put(subThemePostfix, false);
     }
   }
 
-  getMoreInput() {
-    ref   = "Scan_Record/Tab/Sub-Theme";
-    input = getLastTextAlertInput();
-    setFieldAnnotation(ref, input);
+  for (postfix : subThemePostfixes) {
+    ref = "Scan_Record/Tab/Sub-Theme_" + postfix;
+    cb  = "requestMoreInput(\"%s\")";
+    cb  = cb.replaceFirst("%s", postfix);
+    addOnEvent(ref, "click", cb);
   }
 
-  clearMoreInput() {
-    ref   = "Scan_Record/Tab/Sub-Theme";
-    input = "";
-    setFieldAnnotation(ref, input);
-  }
 ]]></logic>
 </module>

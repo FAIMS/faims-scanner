@@ -51,7 +51,19 @@
               <Doc_Name/>
               <File_Reference/>
               <Theme/>
-              <Sub-Theme/>
+              <Sub-Theme_Architecture_Space/>
+              <Sub-Theme_Crime_Punishment/>
+              <Sub-Theme_Economics/>
+              <Sub-Theme_Education/>
+              <Sub-Theme_Gender/>
+              <Sub-Theme_Host_Communities/>
+              <Sub-Theme_Legacy_Remembering/>
+              <Sub-Theme_Media/>
+              <Sub-Theme_Medical/>
+              <Sub-Theme_Military/>
+              <Sub-Theme_Politics/>
+              <Sub-Theme_Race/>
+              <Sub-Theme_Social/>
             </Tab>
             <Files>
               <Files/>
@@ -207,14 +219,97 @@
             <value>0</value>
           </item>
         </select1>
-        <select1 faims_attribute_type="vocab" ref="Sub-Theme" faims_attribute_name="Sub-Theme">
-          <label>{Sub-Theme}</label>
-          <!--WARNING: No type t was given for this view; assuming it is a dropdown-->
+        <select faims_attribute_type="vocab" ref="Sub-Theme_Architecture_Space" faims_attribute_name="Sub-Theme Architecture Space">
+          <label>{Sub_Theme__Architecture_Space}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
-        </select1>
+        </select>
+        <select faims_attribute_type="vocab" ref="Sub-Theme_Crime_Punishment" faims_attribute_name="Sub-Theme Crime Punishment">
+          <label>{Sub_Theme__Crime_Punishment}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
+        <select faims_attribute_type="vocab" ref="Sub-Theme_Economics" faims_attribute_name="Sub-Theme Economics">
+          <label>{Sub_Theme__Economics}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
+        <select faims_attribute_type="vocab" ref="Sub-Theme_Education" faims_attribute_name="Sub-Theme Education">
+          <label>{Sub_Theme__Education}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
+        <select faims_attribute_type="vocab" ref="Sub-Theme_Gender" faims_attribute_name="Sub-Theme Gender">
+          <label>{Sub_Theme__Gender}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
+        <select faims_attribute_type="vocab" ref="Sub-Theme_Host_Communities" faims_attribute_name="Sub-Theme Host Communities">
+          <label>{Sub_Theme__Host_Communities}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
+        <select faims_attribute_type="vocab" ref="Sub-Theme_Legacy_Remembering" faims_attribute_name="Sub-Theme Legacy Remembering">
+          <label>{Sub_Theme__Legacy_Remembering}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
+        <select faims_attribute_type="vocab" ref="Sub-Theme_Media" faims_attribute_name="Sub-Theme Media">
+          <label>{Sub_Theme__Media}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
+        <select faims_attribute_type="vocab" ref="Sub-Theme_Medical" faims_attribute_name="Sub-Theme Medical">
+          <label>{Sub_Theme__Medical}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
+        <select faims_attribute_type="vocab" ref="Sub-Theme_Military" faims_attribute_name="Sub-Theme Military">
+          <label>{Sub_Theme__Military}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
+        <select faims_attribute_type="vocab" ref="Sub-Theme_Politics" faims_attribute_name="Sub-Theme Politics">
+          <label>{Sub_Theme__Politics}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
+        <select faims_attribute_type="vocab" ref="Sub-Theme_Race" faims_attribute_name="Sub-Theme Race">
+          <label>{Sub_Theme__Race}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
+        <select faims_attribute_type="vocab" ref="Sub-Theme_Social" faims_attribute_name="Sub-Theme Social">
+          <label>{Sub_Theme__Social}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
       </group>
       <group ref="Files">
         <label>{Files}</label>

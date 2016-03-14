@@ -149,7 +149,6 @@ addOnEvent("Scan_Record/Tab/Language", "click", "dropdownItemValue = getFieldVal
 addOnEvent("Scan_Record/Tab/Repository", "click", "dropdownItemValue = getFieldValue(\"Scan_Record/Tab/Repository\")");
 addOnEvent("Scan_Record/Tab/Garrison", "click", "dropdownItemValue = getFieldValue(\"Scan_Record/Tab/Garrison\")");
 addOnEvent("Scan_Record/Tab/Theme", "click", "dropdownItemValue = getFieldValue(\"Scan_Record/Tab/Theme\")");
-addOnEvent("Scan_Record/Tab/Sub-Theme", "click", "dropdownItemValue = getFieldValue(\"Scan_Record/Tab/Sub-Theme\")");
 
 /******************************************************************************/
 /*                                 ACTION BAR                                 */
@@ -469,7 +468,19 @@ makeVocab("DropDown", "Scan_Record/Tab/Language", "Language");
 makeVocab("DropDown", "Scan_Record/Tab/Repository", "Repository");
 makeVocab("DropDown", "Scan_Record/Tab/Garrison", "Garrison");
 makeVocab("DropDown", "Scan_Record/Tab/Theme", "Theme");
-makeVocab("HierarchicalDropDown", "Scan_Record/Tab/Sub-Theme", "Sub-Theme");
+makeVocab("CheckBoxGroup", "Scan_Record/Tab/Sub-Theme_Architecture_Space", "Sub-Theme Architecture Space");
+makeVocab("CheckBoxGroup", "Scan_Record/Tab/Sub-Theme_Crime_Punishment", "Sub-Theme Crime Punishment");
+makeVocab("CheckBoxGroup", "Scan_Record/Tab/Sub-Theme_Economics", "Sub-Theme Economics");
+makeVocab("CheckBoxGroup", "Scan_Record/Tab/Sub-Theme_Education", "Sub-Theme Education");
+makeVocab("CheckBoxGroup", "Scan_Record/Tab/Sub-Theme_Gender", "Sub-Theme Gender");
+makeVocab("CheckBoxGroup", "Scan_Record/Tab/Sub-Theme_Host_Communities", "Sub-Theme Host Communities");
+makeVocab("CheckBoxGroup", "Scan_Record/Tab/Sub-Theme_Legacy_Remembering", "Sub-Theme Legacy Remembering");
+makeVocab("CheckBoxGroup", "Scan_Record/Tab/Sub-Theme_Media", "Sub-Theme Media");
+makeVocab("CheckBoxGroup", "Scan_Record/Tab/Sub-Theme_Medical", "Sub-Theme Medical");
+makeVocab("CheckBoxGroup", "Scan_Record/Tab/Sub-Theme_Military", "Sub-Theme Military");
+makeVocab("CheckBoxGroup", "Scan_Record/Tab/Sub-Theme_Politics", "Sub-Theme Politics");
+makeVocab("CheckBoxGroup", "Scan_Record/Tab/Sub-Theme_Race", "Sub-Theme Race");
+makeVocab("CheckBoxGroup", "Scan_Record/Tab/Sub-Theme_Social", "Sub-Theme Social");
 
 
 /******************************************************************************/
@@ -897,6 +908,7 @@ newScanRecord(){
   incAutoNum(autoNumDest);
 
   initialisePeriods();
+  initialiseSelected();
 }
 
 duplicateScanRecord(){
@@ -1013,7 +1025,14 @@ loadScanRecordFrom(String uuid) {
   setUuid(tabgroup, uuid);
   if (isNull(uuid)) return;
 
-  showTabGroup(tabgroup, uuid);
+  cb = new FetchCallback() {
+    onFetch(result) {
+      entity = result;
+      attributes = entity.getAttributes();
+      initialiseSelected(attributes);
+    }
+  };
+  showTabGroup(tabgroup, uuid, cb);
 }
 
 
@@ -1112,7 +1131,8 @@ incAutoNum(String destPath) {
 
   fileListToString(files) {
     String s = "";
-    for (i = 0; i < files.size(); i++) s += files.get(i).getName() + "\n";
+    for (i = 0; i < files.size(); i++)
+      s += files.get(i).getName() + "\n";
     return s;
   }
 
@@ -1148,18 +1168,62 @@ incAutoNum(String destPath) {
 /* Triggered using @POSTPROC.                                                 */
 /******************************************************************************/
   initialisePeriods() {
+    tabgroup = "Scan_Record";
     setFieldValue("Scan_Record/Tab/Period_From", "07/07/1937");
     setFieldValue("Scan_Record/Tab/Period_Till", "02/09/1945");
+    keepTabGroupChanges(tabgroup);
   }
 
 /************************** SUB-THEME INPUT: "OTHER" **************************/
-  addOnEvent("Scan_Record/Tab/Sub-Theme", "click", "checkForMoreInput()");
+  //addOnEvent("Scan_Record", "show", "initialiseSelected()");
 
-  subThemeVocab = new ArrayList();
-  fetchVocab("Sub-Theme", subThemeVocab, "getOtherVocabId()");
+  subThemePostfixes = new ArrayList();
+  subThemePostfixes.add("Architecture_Space");
+  subThemePostfixes.add("Crime_Punishment");
+  subThemePostfixes.add("Economics");
+  subThemePostfixes.add("Education");
+  subThemePostfixes.add("Gender");
+  subThemePostfixes.add("Host_Communities");
+  subThemePostfixes.add("Legacy_Remembering");
+  subThemePostfixes.add("Media");
+  subThemePostfixes.add("Medical");
+  subThemePostfixes.add("Military");
+  subThemePostfixes.add("Politics");
+  subThemePostfixes.add("Race");
+  subThemePostfixes.add("Social");
 
-  otherVocabIds = new ArrayList();
-  getOtherVocabId() {
+  otherWasSelected = new HashMap();
+  initialiseSelected() {
+    initialiseSelected(null);
+  }
+  initialiseSelected(attributes) {
+    for (postfix : subThemePostfixes) {
+      otherWasSelected.put(postfix, false);
+    }
+
+    if (attributes == null)
+      return;
+    for (a : attributes) {
+      for (postfix : subThemePostfixes) {
+        propertyName = "Sub-Theme " + postfix.replaceAll("_", " ");
+        vocabId      = a.getValue("vocab");
+        if (!a.getName().equals(propertyName)) continue;
+
+        if (otherVocabIds.contains(vocabId)) {
+          otherWasSelected.put(postfix, true);
+        }
+      }
+    }
+  }
+
+  subThemeVocab = Collections.synchronizedList(new ArrayList());
+  for (postfix : subThemePostfixes) {
+    propertyName = "Sub-Theme " + postfix.replaceAll("_", " ");
+    fetchVocab(propertyName, subThemeVocab, "getOtherVocabIds()");
+  }
+
+  otherVocabIds = Collections.synchronizedSet(new HashSet());
+  getOtherVocabIds() {
     for (vocabEntry : subThemeVocab) {
       vocabId   = vocabEntry.get(0);
       vocabName = vocabEntry.get(1);
@@ -1169,28 +1233,50 @@ incAutoNum(String destPath) {
     }
   }
 
-  checkForMoreInput() {
-    ref = "Scan_Record/Tab/Sub-Theme";
+  // Returns true IFF `As` contains any of the elements in `Bs`.
+  containsAnyOf(As, Bs) {
+    for (b : Bs)
+      if (containsString(As, b))
+        return true;
+    return false;
+  }
+
+  // Returns true IFF the list of NameValuePair objects in `As` has an element
+  // whose getName method returns a string equal to `s`.
+  containsString(As, s) {
+    for (a : As) {
+      if (a.getName().equals(s))
+        return true;
+    }
+    return false;
+  }
+
+  requestMoreInput(subThemePostfix) {
+    ref = "Scan_Record/Tab/Sub-Theme_" + subThemePostfix;
     val = getFieldValue(ref);
-    if (otherVocabIds.contains(val)) {
-      cb = "getMoreInput()";
-      showTextAlert("You selected '{Other}'", "Please enter a sub-theme", cb, "");
+
+    if (containsAnyOf(val, otherVocabIds)) {
+      if (!otherWasSelected.get(subThemePostfix)) {
+        otherWasSelected.put(subThemePostfix, true);
+
+        head  = "Additional Input Required...";
+        body  = "You selected 'Other'. Please provide an annotation on the ";
+        body += "box you checked to specify a sub-theme.";
+
+        showWarning(head, body);
+      }
     } else {
-      clearMoreInput();
+      otherWasSelected.put(subThemePostfix, false);
     }
   }
 
-  getMoreInput() {
-    ref   = "Scan_Record/Tab/Sub-Theme";
-    input = getLastTextAlertInput();
-    setFieldAnnotation(ref, input);
+  for (postfix : subThemePostfixes) {
+    ref = "Scan_Record/Tab/Sub-Theme_" + postfix;
+    cb  = "requestMoreInput(\"%s\")";
+    cb  = cb.replaceFirst("%s", postfix);
+    addOnEvent(ref, "click", cb);
   }
 
-  clearMoreInput() {
-    ref   = "Scan_Record/Tab/Sub-Theme";
-    input = "";
-    setFieldAnnotation(ref, input);
-  }
 
 /******************************************************************************/
 /*                                    INIT                                    */

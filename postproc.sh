@@ -39,6 +39,32 @@ newScanRecord(){
   incAutoNum(autoNumDest);
 
   initialisePeriods();
+  initialiseSelected();
+}"
+perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_logic.bsh
+
+string="
+loadScanRecordFrom(String uuid) {
+  String tabgroup = \"Scan_Record\";
+  setUuid(tabgroup, uuid);
+  if (isNull(uuid)) return;
+
+  showTabGroup(tabgroup, uuid);
+}"
+replacement="
+loadScanRecordFrom(String uuid) {
+  String tabgroup = \"Scan_Record\";
+  setUuid(tabgroup, uuid);
+  if (isNull(uuid)) return;
+
+  cb = new FetchCallback() {
+    onFetch(result) {
+      entity = result;
+      attributes = entity.getAttributes();
+      initialiseSelected(attributes);
+    }
+  };
+  showTabGroup(tabgroup, uuid, cb);
 }"
 perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_logic.bsh
 

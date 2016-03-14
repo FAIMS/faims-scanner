@@ -43,7 +43,31 @@ mkdir -p wireframeImages
   
   ./makeElement.sh Scan_Record_Tab_Theme "" dropdown 1 false false true false false wireframeImages/
   
-  ./makeElement.sh Scan_Record_Tab_Sub-Theme "" dropdown 1 false false true false false wireframeImages/
+  ./makeElement.sh Scan_Record_Tab_Sub-Theme_Architecture_Space "" checkbox 1 false false true false false wireframeImages/
+  
+  ./makeElement.sh Scan_Record_Tab_Sub-Theme_Crime_Punishment "" checkbox 1 false false true false false wireframeImages/
+  
+  ./makeElement.sh Scan_Record_Tab_Sub-Theme_Economics "" checkbox 1 false false true false false wireframeImages/
+  
+  ./makeElement.sh Scan_Record_Tab_Sub-Theme_Education "" checkbox 1 false false true false false wireframeImages/
+  
+  ./makeElement.sh Scan_Record_Tab_Sub-Theme_Gender "" checkbox 1 false false true false false wireframeImages/
+  
+  ./makeElement.sh Scan_Record_Tab_Sub-Theme_Host_Communities "" checkbox 1 false false true false false wireframeImages/
+  
+  ./makeElement.sh Scan_Record_Tab_Sub-Theme_Legacy_Remembering "" checkbox 1 false false true false false wireframeImages/
+  
+  ./makeElement.sh Scan_Record_Tab_Sub-Theme_Media "" checkbox 1 false false true false false wireframeImages/
+  
+  ./makeElement.sh Scan_Record_Tab_Sub-Theme_Medical "" checkbox 1 false false true false false wireframeImages/
+  
+  ./makeElement.sh Scan_Record_Tab_Sub-Theme_Military "" checkbox 1 false false true false false wireframeImages/
+  
+  ./makeElement.sh Scan_Record_Tab_Sub-Theme_Politics "" checkbox 1 false false true false false wireframeImages/
+  
+  ./makeElement.sh Scan_Record_Tab_Sub-Theme_Race "" checkbox 1 false false true false false wireframeImages/
+  
+  ./makeElement.sh Scan_Record_Tab_Sub-Theme_Social "" checkbox 1 false false true false false wireframeImages/
   
   ./makeElement.sh Scan_Record_Files_Files "" file 1 false false true false false wireframeImages/
   

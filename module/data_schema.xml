@@ -166,135 +166,291 @@
 <description/></term>
       </lookup>
     </property>
-    <property name="Sub-Theme" type="vocab">
+    <property name="Sub-Theme Architecture Space" type="vocab">
       <description/>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
-        <term>{Architecture_Space}
-<description/><term>{Base_layout}
-<description/></term><term>{Facilities}
-<description/></term><term>{Historiography_and_theory}
-<description/></term><term>{One_base_buildings}
-<description/></term><term>{Off_base_buildings}
-<description/></term><term>{Security}
-<description/></term><term>{Other}
-<description/></term></term>
-        <term>{Crime_Punishment}
-<description/><term>{Historiography_and_theory}
-<description/></term><term>{Local_law}
-<description/></term><term>{Military_law}
-<description/></term><term>{Case_law}
-<description/></term><term>{Other}
-<description/></term></term>
-        <term>{Economics}
-<description/><term>{Base}
-<description/></term><term>{Historiography_and_theory}
-<description/></term><term>{Local_economy}
-<description/></term><term>{Shopping}
-<description/></term><term>{Withdrawal_impact}
-<description/></term><term>{Other}
-<description/></term></term>
-        <term>{Education}
-<description/><term>{Curriculum}
-<description/></term><term>{Facilities}
-<description/></term><term>{Historiography_and_theory}
-<description/></term><term>{Parents}
-<description/></term><term>{Schools}
-<description/></term><term>{Students}
-<description/></term><term>{Teachers}
-<description/></term><term>{Other}
-<description/></term></term>
-        <term>{Gender}
-<description/><term>{Children}
-<description/></term><term>{Fathers}
-<description/></term><term>{Historiography_and_theory}
-<description/></term><term>{Husbands}
-<description/></term><term>{Mothers}
-<description/></term><term>{Sexual_Relations___with_other_Australians}
-<description/></term><term>{Sexual_Relations___with_Locally_Employed_Civilians}
-<description/></term><term>{Sexual_Relations___other}
-<description/></term><term>{Wives}
-<description/></term><term>{Women}
-<description/></term></term>
-        <term>{Host_Communities}
-<description/><term>{Interactions}
-<description/></term><term>{Historiography_and_theory}
-<description/></term><term>{Opposition}
-<description/></term><term>{Perceptions}
-<description/></term><term>{Locally_Employed_Civilians}
-<description/></term><term>{Other}
-<description/></term></term>
-        <term>{Legacy_Remembering}
-<description/><term>{Australians}
-<description/></term><term>{Local_community}
-<description/></term><term>{Historiography_and_theory}
-<description/></term><term>{Other}
-<description/></term></term>
-        <term>{Media}
-<description/><term>{Electronic___Local}
-<description/></term><term>{Electronic___Australian}
-<description/></term><term>{Electronic___Other}
-<description/></term><term>{Historiography_and_theory}
-<description/></term><term>{Print___Local}
-<description/></term><term>{Print___Australian}
-<description/></term><term>{Print___Other}
-<description/></term><term>{Other}
-<description/></term></term>
-        <term>{Medical}
-<description/><term>{Case_History}
-<description/></term><term>{Facilities}
-<description/></term><term>{Historiography_and_theory}
-<description/></term><term>{Local_communities}
-<description/></term><term>{Other}
-<description/></term></term>
-        <term>{Military}
-<description/><term>{Accidents}
-<description/></term><term>{Equipment}
-<description/></term><term>{Families_and_dependents}
-<description/></term><term>{Historiography_and_theory}
-<description/></term><term>{Host_military}
-<description/></term><term>{Justice}
-<description/></term><term>{Logistics}
-<description/></term><term>{Operations}
-<description/></term><term>{Personnel}
-<description/></term><term>{Other}
-<description/></term></term>
-        <term>{Politics}
-<description/><term>{Colonialism}
-<description/></term><term>{Garrison___Establishment}
-<description/></term><term>{Garrison___Operation}
-<description/></term><term>{Garrison___Withdrawal}
-<description/></term><term>{Historiography_and_theory}
-<description/></term><term>{Relations___Bilateral___Singapore}
-<description/></term><term>{Relations___Bilateral___Malaysia}
-<description/></term><term>{Relations___Bilateral___Hong_Kong}
-<description/></term><term>{Relations___Bilateral___Japan}
-<description/></term><term>{Relations___Bilateral___NZ}
-<description/></term><term>{Relations___Bilateral___UK}
-<description/></term><term>{Relations___Bilateral___USA}
-<description/></term><term>{Relations___Regional}
-<description/></term><term>{Relations___International}
-<description/></term><term>{White_Australia_Policy}
-<description/></term><term>{Other}
-<description/></term></term>
-        <term>{Race}
-<description/><term>{Interaction_engagement}
-<description/></term><term>{Historiography_and_theory}
-<description/></term><term>{Language_and_terms}
-<description/></term><term>{White_Australia_Policy}
-<description/></term><term>{Other}
-<description/></term></term>
-        <term>{Social}
-<description/><term>{Families}
-<description/></term><term>{Food}
-<description/></term><term>{Historiography_and_theory}
-<description/></term><term>{Housing}
-<description/></term><term>{Interaction_engagement}
-<description/></term><term>{Relationships}
-<description/></term><term>{Sport}
-<description/></term><term>{Other}
-<description/></term></term>
+        <term>{Base_layout}
+<description/></term>
+        <term>{Facilities}
+<description/></term>
+        <term>{Historiography_and_theory}
+<description/></term>
+        <term>{One_base_buildings}
+<description/></term>
+        <term>{Off_base_buildings}
+<description/></term>
+        <term>{Security}
+<description/></term>
+        <term>{Other}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="Sub-Theme Crime Punishment" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Historiography_and_theory}
+<description/></term>
+        <term>{Local_law}
+<description/></term>
+        <term>{Military_law}
+<description/></term>
+        <term>{Case_law}
+<description/></term>
+        <term>{Other}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="Sub-Theme Economics" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Base}
+<description/></term>
+        <term>{Historiography_and_theory}
+<description/></term>
+        <term>{Local_economy}
+<description/></term>
+        <term>{Shopping}
+<description/></term>
+        <term>{Withdrawal_impact}
+<description/></term>
+        <term>{Other}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="Sub-Theme Education" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Curriculum}
+<description/></term>
+        <term>{Facilities}
+<description/></term>
+        <term>{Historiography_and_theory}
+<description/></term>
+        <term>{Parents}
+<description/></term>
+        <term>{Schools}
+<description/></term>
+        <term>{Students}
+<description/></term>
+        <term>{Teachers}
+<description/></term>
+        <term>{Other}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="Sub-Theme Gender" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Children}
+<description/></term>
+        <term>{Fathers}
+<description/></term>
+        <term>{Historiography_and_theory}
+<description/></term>
+        <term>{Husbands}
+<description/></term>
+        <term>{Mothers}
+<description/></term>
+        <term>{Sexual_Relations___with_other_Australians}
+<description/></term>
+        <term>{Sexual_Relations___with_Locally_Employed_Civilians}
+<description/></term>
+        <term>{Sexual_Relations___other}
+<description/></term>
+        <term>{Wives}
+<description/></term>
+        <term>{Women}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="Sub-Theme Host Communities" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Interactions}
+<description/></term>
+        <term>{Historiography_and_theory}
+<description/></term>
+        <term>{Opposition}
+<description/></term>
+        <term>{Perceptions}
+<description/></term>
+        <term>{Locally_Employed_Civilians}
+<description/></term>
+        <term>{Other}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="Sub-Theme Legacy Remembering" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Australians}
+<description/></term>
+        <term>{Local_community}
+<description/></term>
+        <term>{Historiography_and_theory}
+<description/></term>
+        <term>{Other}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="Sub-Theme Media" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Electronic___Local}
+<description/></term>
+        <term>{Electronic___Australian}
+<description/></term>
+        <term>{Electronic___Other}
+<description/></term>
+        <term>{Historiography_and_theory}
+<description/></term>
+        <term>{Print___Local}
+<description/></term>
+        <term>{Print___Australian}
+<description/></term>
+        <term>{Print___Other}
+<description/></term>
+        <term>{Other}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="Sub-Theme Medical" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Case_History}
+<description/></term>
+        <term>{Facilities}
+<description/></term>
+        <term>{Historiography_and_theory}
+<description/></term>
+        <term>{Local_communities}
+<description/></term>
+        <term>{Other}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="Sub-Theme Military" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Accidents}
+<description/></term>
+        <term>{Equipment}
+<description/></term>
+        <term>{Families_and_dependents}
+<description/></term>
+        <term>{Historiography_and_theory}
+<description/></term>
+        <term>{Host_military}
+<description/></term>
+        <term>{Justice}
+<description/></term>
+        <term>{Logistics}
+<description/></term>
+        <term>{Operations}
+<description/></term>
+        <term>{Personnel}
+<description/></term>
+        <term>{Other}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="Sub-Theme Politics" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Colonialism}
+<description/></term>
+        <term>{Garrison___Establishment}
+<description/></term>
+        <term>{Garrison___Operation}
+<description/></term>
+        <term>{Garrison___Withdrawal}
+<description/></term>
+        <term>{Historiography_and_theory}
+<description/></term>
+        <term>{Relations___Bilateral___Singapore}
+<description/></term>
+        <term>{Relations___Bilateral___Malaysia}
+<description/></term>
+        <term>{Relations___Bilateral___Hong_Kong}
+<description/></term>
+        <term>{Relations___Bilateral___Japan}
+<description/></term>
+        <term>{Relations___Bilateral___NZ}
+<description/></term>
+        <term>{Relations___Bilateral___UK}
+<description/></term>
+        <term>{Relations___Bilateral___USA}
+<description/></term>
+        <term>{Relations___Regional}
+<description/></term>
+        <term>{Relations___International}
+<description/></term>
+        <term>{White_Australia_Policy}
+<description/></term>
+        <term>{Other}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="Sub-Theme Race" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Interaction_engagement}
+<description/></term>
+        <term>{Historiography_and_theory}
+<description/></term>
+        <term>{Language_and_terms}
+<description/></term>
+        <term>{White_Australia_Policy}
+<description/></term>
+        <term>{Other}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="Sub-Theme Social" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Families}
+<description/></term>
+        <term>{Food}
+<description/></term>
+        <term>{Historiography_and_theory}
+<description/></term>
+        <term>{Housing}
+<description/></term>
+        <term>{Interaction_engagement}
+<description/></term>
+        <term>{Relationships}
+<description/></term>
+        <term>{Sport}
+<description/></term>
+        <term>{Other}
+<description/></term>
       </lookup>
     </property>
     <property name="Files" type="file" file="true" thumbnail="true">
