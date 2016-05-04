@@ -440,8 +440,11 @@
 
   for (postfix : subThemePostfixes) {
     ref = "Scan_Record/Tab/Sub-Theme_" + postfix;
-    cb  = "requestMoreInput(\"%s\")";
-    cb  = cb.replaceFirst("%s", postfix);
+
+    String cb = "";
+    cb = "requestMoreInput(\"%s\")";
+    cb = cb.replaceFirst("%s", postfix);
+
     addOnEvent(ref, "click", cb);
   }
 
