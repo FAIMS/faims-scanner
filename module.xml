@@ -343,8 +343,6 @@
   }
 
 /************************** SUB-THEME INPUT: "OTHER" **************************/
-  //addOnEvent("Scan_Record", "show", "initialiseSelected()");
-
   subThemePostfixes = new ArrayList();
   subThemePostfixes.add("Architecture_Space");
   subThemePostfixes.add("Crime_Punishment");
@@ -360,6 +358,24 @@
   subThemePostfixes.add("Race");
   subThemePostfixes.add("Social");
 
+  // Determine vocab ID's displayed as "{Other}"
+  subThemeVocab = Collections.synchronizedList(new ArrayList());
+  otherVocabIds = Collections.synchronizedSet (new HashSet  ());
+  for (postfix : subThemePostfixes) {
+    propertyName = "Sub-Theme " + postfix.replaceAll("_", " ");
+    fetchVocab(propertyName, subThemeVocab, "getOtherVocabIds()");
+  }
+  getOtherVocabIds() {
+    for (vocabEntry : subThemeVocab) {
+      vocabId   = vocabEntry.get(0);
+      vocabName = vocabEntry.get(1);
+      if (vocabName.equals("{Other}")) {
+        otherVocabIds.add(vocabId);
+      }
+    }
+  }
+
+  // initialiseSelected is triggered using @POSTPROC.
   otherWasSelected = new HashMap();
   initialiseSelected() {
     initialiseSelected(null);
@@ -371,32 +387,16 @@
 
     if (attributes == null)
       return;
-    for (a : attributes) {
-      for (postfix : subThemePostfixes) {
+    for (postfix : subThemePostfixes) {
+      for (a : attributes) {
         propertyName = "Sub-Theme " + postfix.replaceAll("_", " ");
         vocabId      = a.getValue("vocab");
         if (!a.getName().equals(propertyName)) continue;
 
         if (otherVocabIds.contains(vocabId)) {
           otherWasSelected.put(postfix, true);
+          break;
         }
-      }
-    }
-  }
-
-  subThemeVocab = Collections.synchronizedList(new ArrayList());
-  for (postfix : subThemePostfixes) {
-    propertyName = "Sub-Theme " + postfix.replaceAll("_", " ");
-    fetchVocab(propertyName, subThemeVocab, "getOtherVocabIds()");
-  }
-
-  otherVocabIds = Collections.synchronizedSet(new HashSet());
-  getOtherVocabIds() {
-    for (vocabEntry : subThemeVocab) {
-      vocabId   = vocabEntry.get(0);
-      vocabName = vocabEntry.get(1);
-      if (vocabName.equals("{Other}")) {
-        otherVocabIds.add(vocabId);
       }
     }
   }

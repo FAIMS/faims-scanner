@@ -68,8 +68,6 @@ newTab(String tab, Boolean resolveTabGroups) {
       String tabgroupString = path[0];
       String tabString      = path[0] + "/" + path[1];
 
-      showWarning(tabString, tabString);
-
       redirectTab = tabString;
       String onShowTabgroup = "if (!isNull(redirectTab)) { newTab(redirectTab); redirectTab = \"\"; }";
       addOnEvent(tabgroupString, "show", onShowTabgroup);
@@ -589,8 +587,6 @@ saveTabGroup(String tabgroup, String callback) {
   SaveCallback saveCallback  = new SaveCallback() {
     onSave(uuid, newRecord) {
       setUuid(tabgroup, uuid);
-      populateAuthorAndTimestamp(tabgroup);
-
       // Make a child-parent relationship if need be.
       if (newRecord && !isNull(parentTabgroup_)) {
         String rel = "";
@@ -625,7 +621,6 @@ saveTabGroup(String tabgroup, String callback) {
     }
   };
 
-  populateAuthorAndTimestamp(tabgroup);
   saveTabGroup(tabgroup, id, geometry, attributes, saveCallback, enableAutosave);
 }
 
@@ -633,30 +628,19 @@ populateAuthorAndTimestamp(String tabgroup) {
   Map tabgroupToAuthor    = new HashMap();
   Map tabgroupToTimestamp = new HashMap();
 
-  String uuid          = getUuid(tabgroup);
   String authorPath    = tabgroupToAuthor.get(tabgroup);
   String timestampPath = tabgroupToTimestamp.get(tabgroup);
-  if (isNull(uuid)) {
-    if (!isNull(authorPath))
-      setFieldValue(authorPath,    "Entity not yet saved");
-    if (!isNull(timestampPath))
-      setFieldValue(timestampPath, "Entity not yet saved");
-    return;
-  }
 
-  String q = "SELECT createdat, createdby " +
-             "  FROM createdmodifiedatby " +
-             " WHERE uuid = '" + uuid + "'";
-  FetchCallback callback = new FetchCallback() {
-    onFetch(result) {
-      if (!isNull(timestampPath))
-        setFieldValue(timestampPath, result.get(0));
-      if (!isNull(authorPath))
-        setFieldValue(authorPath,    result.get(1));
-    }
-  };
+  fmt     = "yyyy-MM-dd HH:mm:ss z";
+  date    = new Date();
+  dateFmt = new java.text.SimpleDateFormat(fmt);
+  dateStr = dateFmt.format(date);
 
-  fetchOne(q, callback);
+  String authorVal    = username;
+  String timestampVal = dateStr;
+
+  if (!isNull(authorPath))    setFieldValue(authorPath,    authorVal);
+  if (!isNull(timestampPath)) setFieldValue(timestampPath, timestampVal);
 }
 
 onShowScanRecord () {
@@ -902,13 +886,10 @@ newScanRecord(){
 
   setUuid(tabgroup, null);
   newTabGroup(tabgroup);
-
+  populateAuthorAndTimestamp(tabgroup);
   String autoNumDest = "";
   autoNumDest = "Scan_Record/Tab/ID";
   incAutoNum(autoNumDest);
-
-  initialisePeriods();
-  initialiseSelected();
 }
 
 duplicateScanRecord(){
@@ -1175,8 +1156,6 @@ incAutoNum(String destPath) {
   }
 
 /************************** SUB-THEME INPUT: "OTHER" **************************/
-  //addOnEvent("Scan_Record", "show", "initialiseSelected()");
-
   subThemePostfixes = new ArrayList();
   subThemePostfixes.add("Architecture_Space");
   subThemePostfixes.add("Crime_Punishment");
@@ -1192,6 +1171,24 @@ incAutoNum(String destPath) {
   subThemePostfixes.add("Race");
   subThemePostfixes.add("Social");
 
+  // Determine vocab ID's displayed as "{Other}"
+  subThemeVocab = Collections.synchronizedList(new ArrayList());
+  otherVocabIds = Collections.synchronizedSet (new HashSet  ());
+  for (postfix : subThemePostfixes) {
+    propertyName = "Sub-Theme " + postfix.replaceAll("_", " ");
+    fetchVocab(propertyName, subThemeVocab, "getOtherVocabIds()");
+  }
+  getOtherVocabIds() {
+    for (vocabEntry : subThemeVocab) {
+      vocabId   = vocabEntry.get(0);
+      vocabName = vocabEntry.get(1);
+      if (vocabName.equals("{Other}")) {
+        otherVocabIds.add(vocabId);
+      }
+    }
+  }
+
+  // initialiseSelected is triggered using @POSTPROC.
   otherWasSelected = new HashMap();
   initialiseSelected() {
     initialiseSelected(null);
@@ -1203,32 +1200,16 @@ incAutoNum(String destPath) {
 
     if (attributes == null)
       return;
-    for (a : attributes) {
-      for (postfix : subThemePostfixes) {
+    for (postfix : subThemePostfixes) {
+      for (a : attributes) {
         propertyName = "Sub-Theme " + postfix.replaceAll("_", " ");
         vocabId      = a.getValue("vocab");
         if (!a.getName().equals(propertyName)) continue;
 
         if (otherVocabIds.contains(vocabId)) {
           otherWasSelected.put(postfix, true);
+          break;
         }
-      }
-    }
-  }
-
-  subThemeVocab = Collections.synchronizedList(new ArrayList());
-  for (postfix : subThemePostfixes) {
-    propertyName = "Sub-Theme " + postfix.replaceAll("_", " ");
-    fetchVocab(propertyName, subThemeVocab, "getOtherVocabIds()");
-  }
-
-  otherVocabIds = Collections.synchronizedSet(new HashSet());
-  getOtherVocabIds() {
-    for (vocabEntry : subThemeVocab) {
-      vocabId   = vocabEntry.get(0);
-      vocabName = vocabEntry.get(1);
-      if (vocabName.equals("{Other}")) {
-        otherVocabIds.add(vocabId);
       }
     }
   }
@@ -1272,8 +1253,11 @@ incAutoNum(String destPath) {
 
   for (postfix : subThemePostfixes) {
     ref = "Scan_Record/Tab/Sub-Theme_" + postfix;
-    cb  = "requestMoreInput(\"%s\")";
-    cb  = cb.replaceFirst("%s", postfix);
+
+    String cb = "";
+    cb = "requestMoreInput(\"%s\")";
+    cb = cb.replaceFirst("%s", postfix);
+
     addOnEvent(ref, "click", cb);
   }
 
