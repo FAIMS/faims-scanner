@@ -50,21 +50,23 @@
               <Period_Till/>
               <Doc_Name/>
               <File_Reference/>
-              <Theme/>
-              <Sub-Theme_Architecture_Space/>
-              <Sub-Theme_Crime_Punishment/>
-              <Sub-Theme_Economics/>
-              <Sub-Theme_Education/>
-              <Sub-Theme_Gender/>
-              <Sub-Theme_Host_Communities/>
-              <Sub-Theme_Legacy_Remembering/>
-              <Sub-Theme_Media/>
-              <Sub-Theme_Medical/>
-              <Sub-Theme_Military/>
-              <Sub-Theme_Politics/>
-              <Sub-Theme_Race/>
-              <Sub-Theme_Social/>
+              <Theme_Architecture_Space/>
+              <Theme_Crime_Punishment/>
+              <Theme_Economics/>
+              <Theme_Education/>
+              <Theme_Gender/>
+              <Theme_Host_Communities/>
+              <Theme_Legacy_Remembering/>
+              <Theme_Media/>
+              <Theme_Medical/>
+              <Theme_Military/>
+              <Theme_Politics/>
+              <Theme_Race/>
+              <Theme_Social/>
             </Tab>
+            <Notes>
+              <Notes/>
+            </Notes>
             <Files>
               <Files/>
               <Button_Files/>
@@ -107,7 +109,6 @@
         <label>{User}</label>
         <select1 appearance="compact" ref="Users">
           <label>{Users}</label>
-          <!--WARNING: No type t was given for this view; assuming it is a list-->
           <item>
             <label>Options not loaded</label>
             <value>0</value>
@@ -155,17 +156,15 @@
     <group ref="Scan_Record" faims_archent_type="Scan Record">
       <label>{Scan_Record}</label>
       <group ref="Tab">
-        <label>{Tab}</label>
+        <label>{Metadata}</label>
         <input faims_attribute_type="measure" ref="ID" faims_attribute_name="ID" faims_style_class="required">
           <label>{ID}</label>
-          <!--WARNING: No type t was given for this view; assuming it is an input-->
         </input>
         <trigger ref="Attach_New_Files">
           <label>{Attach_New_Files}</label>
         </trigger>
         <select1 faims_attribute_type="vocab" ref="File_Type" faims_attribute_name="File Type">
           <label>{File_Type}</label>
-          <!--WARNING: No type t was given for this view; assuming it is a dropdown-->
           <item>
             <label>Options not loaded</label>
             <value>0</value>
@@ -173,7 +172,6 @@
         </select1>
         <select1 faims_attribute_type="vocab" ref="Language" faims_attribute_name="Language">
           <label>{Language}</label>
-          <!--WARNING: No type t was given for this view; assuming it is a dropdown-->
           <item>
             <label>Options not loaded</label>
             <value>0</value>
@@ -181,7 +179,6 @@
         </select1>
         <select1 faims_attribute_type="vocab" ref="Repository" faims_attribute_name="Repository">
           <label>{Repository}</label>
-          <!--WARNING: No type t was given for this view; assuming it is a dropdown-->
           <item>
             <label>Options not loaded</label>
             <value>0</value>
@@ -189,127 +186,120 @@
         </select1>
         <select1 faims_attribute_type="vocab" ref="Garrison" faims_attribute_name="Garrison">
           <label>{Garrison}</label>
-          <!--WARNING: No type t was given for this view; assuming it is a dropdown-->
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select1>
         <input faims_attribute_type="measure" ref="Period_From" faims_attribute_name="Period From">
-          <label>{Period_From}</label>
-          <!--WARNING: No type t was given for this view; assuming it is an input-->
+          <label>{Date_from}</label>
         </input>
         <input faims_attribute_type="measure" ref="Period_Till" faims_attribute_name="Period Till">
-          <label>{Period_Till}</label>
-          <!--WARNING: No type t was given for this view; assuming it is an input-->
+          <label>{Date_to}</label>
         </input>
         <input faims_attribute_type="measure" ref="Doc_Name" faims_attribute_name="Doc Name">
           <label>{Doc_Name}</label>
-          <!--WARNING: No type t was given for this view; assuming it is an input-->
         </input>
         <input faims_attribute_type="measure" ref="File_Reference" faims_attribute_name="File Reference">
           <label>{File_Reference}</label>
-          <!--WARNING: No type t was given for this view; assuming it is an input-->
         </input>
-        <select1 faims_attribute_type="vocab" ref="Theme" faims_attribute_name="Theme">
-          <label>{Theme}</label>
-          <!--WARNING: No type t was given for this view; assuming it is a dropdown-->
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select1>
-        <select faims_attribute_type="vocab" ref="Sub-Theme_Architecture_Space" faims_attribute_name="Sub-Theme Architecture Space">
-          <label>{Sub_Theme__Architecture_Space}</label>
+        <select faims_attribute_type="vocab" ref="Theme_Architecture_Space" faims_attribute_name="Theme Architecture Space">
+          <label>{Theme__Architecture_Space}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Sub-Theme_Crime_Punishment" faims_attribute_name="Sub-Theme Crime Punishment">
-          <label>{Sub_Theme__Crime_Punishment}</label>
+        <select faims_attribute_type="vocab" ref="Theme_Crime_Punishment" faims_attribute_name="Theme Crime Punishment">
+          <label>{Theme__Crime_Punishment}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Sub-Theme_Economics" faims_attribute_name="Sub-Theme Economics">
-          <label>{Sub_Theme__Economics}</label>
+        <select faims_attribute_type="vocab" ref="Theme_Economics" faims_attribute_name="Theme Economics">
+          <label>{Theme__Economics}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Sub-Theme_Education" faims_attribute_name="Sub-Theme Education">
-          <label>{Sub_Theme__Education}</label>
+        <select faims_attribute_type="vocab" ref="Theme_Education" faims_attribute_name="Theme Education">
+          <label>{Theme__Education}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Sub-Theme_Gender" faims_attribute_name="Sub-Theme Gender">
-          <label>{Sub_Theme__Gender}</label>
+        <select faims_attribute_type="vocab" ref="Theme_Gender" faims_attribute_name="Theme Gender">
+          <label>{Theme__Gender}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Sub-Theme_Host_Communities" faims_attribute_name="Sub-Theme Host Communities">
-          <label>{Sub_Theme__Host_Communities}</label>
+        <select faims_attribute_type="vocab" ref="Theme_Host_Communities" faims_attribute_name="Theme Host Communities">
+          <label>{Theme__Host_Communities}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Sub-Theme_Legacy_Remembering" faims_attribute_name="Sub-Theme Legacy Remembering">
-          <label>{Sub_Theme__Legacy_Remembering}</label>
+        <select faims_attribute_type="vocab" ref="Theme_Legacy_Remembering" faims_attribute_name="Theme Legacy Remembering">
+          <label>{Theme__Legacy_Remembering}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Sub-Theme_Media" faims_attribute_name="Sub-Theme Media">
-          <label>{Sub_Theme__Media}</label>
+        <select faims_attribute_type="vocab" ref="Theme_Media" faims_attribute_name="Theme Media">
+          <label>{Theme__Media}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Sub-Theme_Medical" faims_attribute_name="Sub-Theme Medical">
-          <label>{Sub_Theme__Medical}</label>
+        <select faims_attribute_type="vocab" ref="Theme_Medical" faims_attribute_name="Theme Medical">
+          <label>{Theme__Medical}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Sub-Theme_Military" faims_attribute_name="Sub-Theme Military">
-          <label>{Sub_Theme__Military}</label>
+        <select faims_attribute_type="vocab" ref="Theme_Military" faims_attribute_name="Theme Military">
+          <label>{Theme__Military}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Sub-Theme_Politics" faims_attribute_name="Sub-Theme Politics">
-          <label>{Sub_Theme__Politics}</label>
+        <select faims_attribute_type="vocab" ref="Theme_Politics" faims_attribute_name="Theme Politics">
+          <label>{Theme__Politics}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Sub-Theme_Race" faims_attribute_name="Sub-Theme Race">
-          <label>{Sub_Theme__Race}</label>
+        <select faims_attribute_type="vocab" ref="Theme_Race" faims_attribute_name="Theme Race">
+          <label>{Theme__Race}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Sub-Theme_Social" faims_attribute_name="Sub-Theme Social">
-          <label>{Sub_Theme__Social}</label>
+        <select faims_attribute_type="vocab" ref="Theme_Social" faims_attribute_name="Theme Social">
+          <label>{Theme__Social}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select>
+      </group>
+      <group ref="Notes">
+        <label>{Notes}</label>
+        <input faims_attribute_type="measure" ref="Notes" faims_attribute_name="Notes">
+          <label>{Notes}</label>
+        </input>
       </group>
       <group ref="Files">
         <label>{Files}</label>

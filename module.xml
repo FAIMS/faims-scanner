@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!--@POSTPROC: ./postproc.sh-->
-<module>
+<module suppressWarnings="true">
 
 <User f="nodata">
   <User f="noscroll">
@@ -18,6 +18,7 @@
 
 <Scan_Record>
   <Tab>
+    Metadata
     <ID f="id notnull autonum"/>
     <Attach_New_Files t="button"/>
     <File_Type>
@@ -75,30 +76,38 @@
         <opt>Thailand — Ubon</opt>
       </opts>
     </Garrison>
-    <Period_From b="date"/>
-    <Period_Till b="date"/>
+    <Period_From b="date">
+      Date from
+    </Period_From>
+    <Period_Till b="date">
+      Date to
+    </Period_Till>
     <Doc_Name/>
     <File_Reference/>
-    <Theme>
-      <opts>
-        <opt>Architecture/Space</opt>
-        <opt>Crime/Punishment</opt>
-        <opt>Economics</opt>
-        <opt>Education</opt>
-        <opt>Gender</opt>
-        <opt>Host Communities</opt>
-        <opt>Legacy/Remembering</opt>
-        <opt>Media</opt>
-        <opt>Medical</opt>
-        <opt>Military</opt>
-        <opt>Politics</opt>
-        <opt>Race</opt>
-        <opt>Social</opt>
-      </opts>
-    </Theme>
+    <!--<Theme>-->
+      <!--<opts>-->
+        <!--<opt>Architecture/Space</opt>-->
+        <!--<opt>Crime/Punishment</opt>-->
+        <!--<opt>Economics</opt>-->
+        <!--<opt>Education</opt>-->
+        <!--<opt>Gender</opt>-->
+        <!--<opt>Host Communities</opt>-->
+        <!--<opt>Legacy/Remembering</opt>-->
+        <!--<opt>Media</opt>-->
+        <!--<opt>Medical</opt>-->
+        <!--<opt>Military</opt>-->
+        <!--<opt>Politics</opt>-->
+        <!--<opt>Race</opt>-->
+        <!--<opt>Social</opt>-->
+      <!--</opts>-->
+    <!--</Theme>-->
 
-    <Sub-Theme_Architecture_Space t="checkbox">
-      Sub-Theme: Architecture/Space
+    <Theme_Architecture_Space t="checkbox">
+      Theme: Architecture/Space
+      <str>
+        <fmt>$1</fmt>
+        <app>, </app>
+      </str>
       <opts>
         <opt>Base layout</opt>
         <opt>Facilities</opt>
@@ -108,10 +117,14 @@
         <opt>Security</opt>
         <opt>Other</opt>
       </opts>
-    </Sub-Theme_Architecture_Space>
+    </Theme_Architecture_Space>
 
-    <Sub-Theme_Crime_Punishment t="checkbox">
-      Sub-Theme: Crime/Punishment
+    <Theme_Crime_Punishment t="checkbox">
+      Theme: Crime/Punishment
+      <str>
+        <fmt>$1</fmt>
+        <app>, </app>
+      </str>
       <opts>
         <opt>Historiography and theory</opt>
         <opt>Local law</opt>
@@ -119,10 +132,14 @@
         <opt>Case law</opt>
         <opt>Other</opt>
       </opts>
-    </Sub-Theme_Crime_Punishment>
+    </Theme_Crime_Punishment>
 
-    <Sub-Theme_Economics t="checkbox">
-      Sub-Theme: Economics
+    <Theme_Economics t="checkbox">
+      Theme: Economics
+      <str>
+        <fmt>$1</fmt>
+        <app>, </app>
+      </str>
       <opts>
         <opt>Base</opt>
         <opt>Historiography and theory</opt>
@@ -131,10 +148,14 @@
         <opt>Withdrawal impact</opt>
         <opt>Other</opt>
       </opts>
-    </Sub-Theme_Economics>
+    </Theme_Economics>
 
-    <Sub-Theme_Education t="checkbox">
-      Sub-Theme: Education
+    <Theme_Education t="checkbox">
+      Theme: Education
+      <str>
+        <fmt>$1</fmt>
+        <app>, </app>
+      </str>
       <opts>
         <opt>Curriculum</opt>
         <opt>Facilities</opt>
@@ -145,10 +166,14 @@
         <opt>Teachers</opt>
         <opt>Other</opt>
       </opts>
-    </Sub-Theme_Education>
+    </Theme_Education>
 
-    <Sub-Theme_Gender t="checkbox">
-      Sub-Theme: Gender
+    <Theme_Gender t="checkbox">
+      Theme: Gender
+      <str>
+        <fmt>$1</fmt>
+        <app>, </app>
+      </str>
       <opts>
         <opt>Children</opt>
         <opt>Fathers</opt>
@@ -161,10 +186,14 @@
         <opt>Wives</opt>
         <opt>Women</opt>
       </opts>
-    </Sub-Theme_Gender>
+    </Theme_Gender>
 
-    <Sub-Theme_Host_Communities t="checkbox">
-      Sub-Theme: Host Communities
+    <Theme_Host_Communities t="checkbox">
+      Theme: Host Communities
+      <str>
+        <fmt>$1</fmt>
+        <app>, </app>
+      </str>
       <opts>
         <opt>Interactions</opt>
         <opt>Historiography and theory</opt>
@@ -173,20 +202,28 @@
         <opt>Locally Employed Civilians</opt>
         <opt>Other</opt>
       </opts>
-    </Sub-Theme_Host_Communities>
+    </Theme_Host_Communities>
 
-    <Sub-Theme_Legacy_Remembering t="checkbox">
-      Sub-Theme: Legacy/Remembering
+    <Theme_Legacy_Remembering t="checkbox">
+      Theme: Legacy/Remembering
+      <str>
+        <fmt>$1</fmt>
+        <app>, </app>
+      </str>
       <opts>
         <opt>Australians</opt>
         <opt>Local community</opt>
         <opt>Historiography and theory</opt>
         <opt>Other</opt>
       </opts>
-    </Sub-Theme_Legacy_Remembering>
+    </Theme_Legacy_Remembering>
 
-    <Sub-Theme_Media t="checkbox">
-      Sub-Theme: Media
+    <Theme_Media t="checkbox">
+      Theme: Media
+      <str>
+        <fmt>$1</fmt>
+        <app>, </app>
+      </str>
       <opts>
         <opt>Electronic — Local</opt>
         <opt>Electronic — Australian</opt>
@@ -197,10 +234,14 @@
         <opt>Print — Other</opt>
         <opt>Other</opt>
       </opts>
-    </Sub-Theme_Media>
+    </Theme_Media>
 
-    <Sub-Theme_Medical t="checkbox">
-      Sub-Theme: Medical
+    <Theme_Medical t="checkbox">
+      Theme: Medical
+      <str>
+        <fmt>$1</fmt>
+        <app>, </app>
+      </str>
       <opts>
         <opt>Case History</opt>
         <opt>Facilities</opt>
@@ -208,10 +249,14 @@
         <opt>Local communities</opt>
         <opt>Other</opt>
       </opts>
-    </Sub-Theme_Medical>
+    </Theme_Medical>
 
-    <Sub-Theme_Military t="checkbox">
-      Sub-Theme: Military
+    <Theme_Military t="checkbox">
+      Theme: Military
+      <str>
+        <fmt>$1</fmt>
+        <app>, </app>
+      </str>
       <opts>
         <opt>Accidents</opt>
         <opt>Equipment</opt>
@@ -224,10 +269,14 @@
         <opt>Personnel</opt>
         <opt>Other</opt>
       </opts>
-    </Sub-Theme_Military>
+    </Theme_Military>
 
-    <Sub-Theme_Politics t="checkbox">
-      Sub-Theme: Politics
+    <Theme_Politics t="checkbox">
+      Theme: Politics
+      <str>
+        <fmt>$1</fmt>
+        <app>, </app>
+      </str>
       <opts>
         <opt>Colonialism</opt>
         <opt>Garrison — Establishment</opt>
@@ -246,10 +295,14 @@
         <opt>White Australia Policy</opt>
         <opt>Other</opt>
       </opts>
-    </Sub-Theme_Politics>
+    </Theme_Politics>
 
-    <Sub-Theme_Race t="checkbox">
-      Sub-Theme: Race
+    <Theme_Race t="checkbox">
+      Theme: Race
+      <str>
+        <fmt>$1</fmt>
+        <app>, </app>
+      </str>
       <opts>
         <opt>Interaction/engagement</opt>
         <opt>Historiography and theory</opt>
@@ -257,10 +310,14 @@
         <opt>White Australia Policy</opt>
         <opt>Other</opt>
       </opts>
-    </Sub-Theme_Race>
+    </Theme_Race>
 
-    <Sub-Theme_Social t="checkbox">
-      Sub-Theme: Social
+    <Theme_Social t="checkbox">
+      Theme: Social
+      <str>
+        <fmt>$1</fmt>
+        <app>, </app>
+      </str>
       <opts>
         <opt>Families</opt>
         <opt>Food</opt>
@@ -271,9 +328,11 @@
         <opt>Sport</opt>
         <opt>Other</opt>
       </opts>
-    </Sub-Theme_Social>
-
+    </Theme_Social>
   </Tab>
+  <Notes>
+    <Notes/>
+  </Notes>
   <Files>
     <Files t="file"/>
   </Files>
@@ -285,7 +344,7 @@
   addOnEvent("Scan_Record", "show", "lastFileList = getFileList()");
 
   getFileList() {
-    String dirPath   = "/sdcard/DCIM/AZCamera";
+    String dirPath   = "/sdcard/DCIM/Camera";
     File   dir       = new File(dirPath);
     if (!dir.exists()) {
       return new ArrayList();
@@ -362,7 +421,7 @@
   subThemeVocab = Collections.synchronizedList(new ArrayList());
   otherVocabIds = Collections.synchronizedSet (new HashSet  ());
   for (postfix : subThemePostfixes) {
-    propertyName = "Sub-Theme " + postfix.replaceAll("_", " ");
+    propertyName = "Theme " + postfix.replaceAll("_", " ");
     fetchVocab(propertyName, subThemeVocab, "getOtherVocabIds()");
   }
   getOtherVocabIds() {
@@ -375,7 +434,6 @@
     }
   }
 
-  // initialiseSelected is triggered using @POSTPROC.
   otherWasSelected = new HashMap();
   initialiseSelected() {
     initialiseSelected(null);
@@ -389,7 +447,7 @@
       return;
     for (postfix : subThemePostfixes) {
       for (a : attributes) {
-        propertyName = "Sub-Theme " + postfix.replaceAll("_", " ");
+        propertyName = "Theme " + postfix.replaceAll("_", " ");
         vocabId      = a.getValue("vocab");
         if (!a.getName().equals(propertyName)) continue;
 
@@ -399,6 +457,44 @@
         }
       }
     }
+  }
+
+  // Overrides autogen definition
+  newScanRecord(){
+    String tabgroup = "Scan_Record";
+
+    String autoNumSource = "";
+    autoNumSource = getFieldValue("Control/Control/Next_ID");
+    if (isNull(autoNumSource)) {
+      showWarning("{Alert}","{A_next_ID_has_not_been_entered_please_provide_one}");
+      return;
+    }
+
+    setUuid(tabgroup, null);
+    newTabGroup(tabgroup);
+    populateAuthorAndTimestamp(tabgroup);
+    String autoNumDest = "";
+    autoNumDest = "Scan_Record/Tab/ID";
+    incAutoNum(autoNumDest);
+
+    initialisePeriods();
+    initialiseSelected();
+  }
+
+  // Overrides autogen definition
+  loadScanRecordFrom(String uuid) {
+    String tabgroup = "Scan_Record";
+    setUuid(tabgroup, uuid);
+    if (isNull(uuid)) return;
+
+    cb = new FetchCallback() {
+      onFetch(result) {
+        entity = result;
+        attributes = entity.getAttributes();
+        initialiseSelected(attributes);
+      }
+    };
+    showTabGroup(tabgroup, uuid, cb);
   }
 
   // Returns true IFF `As` contains any of the elements in `Bs`.
@@ -420,7 +516,7 @@
   }
 
   requestMoreInput(subThemePostfix) {
-    ref = "Scan_Record/Tab/Sub-Theme_" + subThemePostfix;
+    ref = "Scan_Record/Tab/Theme_" + subThemePostfix;
     val = getFieldValue(ref);
 
     if (containsAnyOf(val, otherVocabIds)) {
@@ -439,7 +535,7 @@
   }
 
   for (postfix : subThemePostfixes) {
-    ref = "Scan_Record/Tab/Sub-Theme_" + postfix;
+    ref = "Scan_Record/Tab/Theme_" + postfix;
 
     String cb = "";
     cb = "requestMoreInput(\"%s\")";
@@ -447,6 +543,33 @@
 
     addOnEvent(ref, "click", cb);
   }
+
+/***************************** NAVIGATION DRAWER ******************************/
+addNavigationButtons(String tabgroup) {
+  removeNavigationButtons();
+  List tabgroupsToValidate = new ArrayList();
+  tabgroupsToValidate.add("Scan_Record");
+
+  addNavigationButton("delete", new ActionButtonCallback() {
+    actionOnLabel() {
+      "{Delete}";
+    }
+    actionOn() {
+      deleteRecord(tabgroup);
+    }
+  }, "danger");
+  if (tabgroupsToValidate.contains(tabgroup)) {
+    addNavigationButton("validate", new ActionButtonCallback() {
+      actionOnLabel() {
+        "{Validate}";
+      }
+      actionOn() {
+        String validationFunction = "validate" + tabgroup.replaceAll("_", "") + "()";
+        eval(validationFunction);
+      }
+    }, "default");
+  }
+}
 
 ]]></logic>
 </module>
