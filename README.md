@@ -10,9 +10,7 @@
 
 0. Take one or more photos:
   0. With the new record still open, start the AZ Camera app.
-  0. Ensure that photos are being taken as .dng files:
-    0. With the device in the portrait orientation, in the top right corner of the screen, tap the ellipsis icon.
-    0. In the row of icons at the top of the screen, tap the third from the left to cycle through the values “JPG”, “JPG RAW” and “RAW”. Selecting “RAW” saves photos as .dng files.
+  0. Ensure that photos are being taken as .jpg files:
   0. Take a photo using the camera icon.
 
 0. Attach the photos to the record:
