@@ -1837,7 +1837,7 @@ for (m : ENTITY_MENUS) {
   addOnEvent("Scan_Record",                      "show", "lastFileList = getFileList()");
 
   List getFileList() {
-    String dirPath   = "/sdcard/DCIM/AZCamera";
+    String dirPath   = "/sdcard/DCIM/Camera";
     File   dir       = new File(dirPath);
     if (!dir.exists()) {
       return new ArrayList();
