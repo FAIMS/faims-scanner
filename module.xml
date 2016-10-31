@@ -344,7 +344,7 @@
   addOnEvent("Scan_Record",                      "show", "lastFileList = getFileList()");
 
   List getFileList() {
-    String dirPath   = "/sdcard/DCIM/Camera";
+    String dirPath   = "/sdcard/DCIM/OpenCamera";
     File   dir       = new File(dirPath);
     if (!dir.exists()) {
       return new ArrayList();
