@@ -1,10 +1,11 @@
-<?xml version="1.0"?>
+<?xml version='1.0' encoding='utf-8'?>
 <h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:jr="http://openrosa.org/javarosa" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
-    <h:title>Fill This In</h:title>
+    <h:title>FILL THIS IN</h:title>
     <model>
       <instance>
-        <faims id="Fill_This_In">
+        <faims id="FILL_THIS_IN">
+          <!--START: Style-->
           <style>
             <orientation>
               <orientation/>
@@ -16,6 +17,7 @@
               <layout_weight/>
             </large>
           </style>
+          <!--END: Style-->
           <User>
             <User>
               <Users/>
@@ -69,19 +71,18 @@
             </Notes>
             <Files>
               <Files/>
-              <Button_Files/>
+              <Files_Button_1/>
             </Files>
           </Scan_Record>
-          <logic/>
         </faims>
       </instance>
-      <bind type="decimal" nodeset="/faims/Control/Control/Next_ID"/>
-      <bind type="decimal" nodeset="/faims/Scan_Record/Tab/ID"/>
-      <bind type="date" nodeset="/faims/Scan_Record/Tab/Period_From"/>
-      <bind type="date" nodeset="/faims/Scan_Record/Tab/Period_Till"/>
+      <bind nodeset="/faims/Control/Control/Next_ID" type="decimal"/>
+      <bind nodeset="/faims/Scan_Record/Tab/Period_From" type="date"/>
+      <bind nodeset="/faims/Scan_Record/Tab/Period_Till" type="date"/>
     </model>
   </h:head>
   <h:body>
+    <!--START: Style-->
     <group ref="style">
       <label/>
       <group ref="orientation">
@@ -103,6 +104,7 @@
         </input>
       </group>
     </group>
+    <!--END: Style-->
     <group ref="User">
       <label>{User}</label>
       <group ref="User" faims_scrollable="false">
@@ -111,7 +113,7 @@
           <label>{Users}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select1>
       </group>
@@ -128,19 +130,19 @@
         </trigger>
       </group>
       <group ref="Search" faims_scrollable="false">
-        <label>{search}</label>
-        <group faims_style="orientation" ref="Colgroup_0">
+        <label>{Search}</label>
+        <group ref="Colgroup_0" faims_style="orientation">
           <label/>
-          <group faims_style="even" ref="Col_0">
+          <group ref="Col_0" faims_style="even">
             <label/>
             <input ref="Search_Term">
               <label>{Search_Term}</label>
             </input>
           </group>
-          <group faims_style="large" ref="Col_1">
+          <group ref="Col_1" faims_style="large">
             <label/>
             <trigger ref="Search_Button">
-              <label>{Search}</label>
+              <label>{Search_Button}</label>
             </trigger>
           </group>
         </group>
@@ -157,161 +159,161 @@
       <label>{Scan_Record}</label>
       <group ref="Tab">
         <label>{Metadata}</label>
-        <input faims_attribute_type="measure" ref="ID" faims_attribute_name="ID" faims_style_class="required">
+        <input faims_attribute_name="ID" faims_attribute_type="measure" ref="ID" faims_style_class="required">
           <label>{ID}</label>
         </input>
         <trigger ref="Attach_New_Files">
           <label>{Attach_New_Files}</label>
         </trigger>
-        <select1 faims_attribute_type="vocab" ref="File_Type" faims_attribute_name="File Type">
+        <select1 faims_attribute_name="File Type" faims_attribute_type="vocab" ref="File_Type">
           <label>{File_Type}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select1>
-        <select1 faims_attribute_type="vocab" ref="Language" faims_attribute_name="Language">
+        <select1 faims_attribute_name="Language" faims_attribute_type="vocab" ref="Language">
           <label>{Language}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select1>
-        <select1 faims_attribute_type="vocab" ref="Repository" faims_attribute_name="Repository">
+        <select1 faims_attribute_name="Repository" faims_attribute_type="vocab" ref="Repository">
           <label>{Repository}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select1>
-        <select1 faims_attribute_type="vocab" ref="Garrison" faims_attribute_name="Garrison">
+        <select1 faims_attribute_name="Garrison" faims_attribute_type="vocab" ref="Garrison">
           <label>{Garrison}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select1>
-        <input faims_attribute_type="measure" ref="Period_From" faims_attribute_name="Period From">
+        <input faims_attribute_name="Period From" faims_attribute_type="measure" ref="Period_From">
           <label>{Date_from}</label>
         </input>
-        <input faims_attribute_type="measure" ref="Period_Till" faims_attribute_name="Period Till">
+        <input faims_attribute_name="Period Till" faims_attribute_type="measure" ref="Period_Till">
           <label>{Date_to}</label>
         </input>
-        <input faims_attribute_type="measure" ref="Doc_Name" faims_attribute_name="Doc Name">
+        <input faims_attribute_name="Doc Name" faims_attribute_type="measure" ref="Doc_Name">
           <label>{Doc_Name}</label>
         </input>
-        <input faims_attribute_type="measure" ref="File_Reference" faims_attribute_name="File Reference">
+        <input faims_attribute_name="File Reference" faims_attribute_type="measure" ref="File_Reference">
           <label>{File_Reference}</label>
         </input>
-        <select faims_attribute_type="vocab" ref="Theme_Architecture_Space" faims_attribute_name="Theme Architecture Space">
+        <select faims_attribute_name="Theme Architecture Space" faims_attribute_type="vocab" ref="Theme_Architecture_Space">
           <label>{Theme__Architecture_Space}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Theme_Crime_Punishment" faims_attribute_name="Theme Crime Punishment">
+        <select faims_attribute_name="Theme Crime Punishment" faims_attribute_type="vocab" ref="Theme_Crime_Punishment">
           <label>{Theme__Crime_Punishment}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Theme_Economics" faims_attribute_name="Theme Economics">
+        <select faims_attribute_name="Theme Economics" faims_attribute_type="vocab" ref="Theme_Economics">
           <label>{Theme__Economics}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Theme_Education" faims_attribute_name="Theme Education">
+        <select faims_attribute_name="Theme Education" faims_attribute_type="vocab" ref="Theme_Education">
           <label>{Theme__Education}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Theme_Gender" faims_attribute_name="Theme Gender">
+        <select faims_attribute_name="Theme Gender" faims_attribute_type="vocab" ref="Theme_Gender">
           <label>{Theme__Gender}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Theme_Host_Communities" faims_attribute_name="Theme Host Communities">
+        <select faims_attribute_name="Theme Host Communities" faims_attribute_type="vocab" ref="Theme_Host_Communities">
           <label>{Theme__Host_Communities}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Theme_Legacy_Remembering" faims_attribute_name="Theme Legacy Remembering">
+        <select faims_attribute_name="Theme Legacy Remembering" faims_attribute_type="vocab" ref="Theme_Legacy_Remembering">
           <label>{Theme__Legacy_Remembering}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Theme_Media" faims_attribute_name="Theme Media">
+        <select faims_attribute_name="Theme Media" faims_attribute_type="vocab" ref="Theme_Media">
           <label>{Theme__Media}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Theme_Medical" faims_attribute_name="Theme Medical">
+        <select faims_attribute_name="Theme Medical" faims_attribute_type="vocab" ref="Theme_Medical">
           <label>{Theme__Medical}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Theme_Military" faims_attribute_name="Theme Military">
+        <select faims_attribute_name="Theme Military" faims_attribute_type="vocab" ref="Theme_Military">
           <label>{Theme__Military}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Theme_Politics" faims_attribute_name="Theme Politics">
+        <select faims_attribute_name="Theme Politics" faims_attribute_type="vocab" ref="Theme_Politics">
           <label>{Theme__Politics}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Theme_Race" faims_attribute_name="Theme Race">
+        <select faims_attribute_name="Theme Race" faims_attribute_type="vocab" ref="Theme_Race">
           <label>{Theme__Race}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <select faims_attribute_type="vocab" ref="Theme_Social" faims_attribute_name="Theme Social">
+        <select faims_attribute_name="Theme Social" faims_attribute_type="vocab" ref="Theme_Social">
           <label>{Theme__Social}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select>
       </group>
       <group ref="Notes">
         <label>{Notes}</label>
-        <input faims_attribute_type="measure" ref="Notes" faims_attribute_name="Notes">
+        <input faims_attribute_name="Notes" faims_attribute_type="measure" ref="Notes">
           <label>{Notes}</label>
         </input>
       </group>
       <group ref="Files">
         <label>{Files}</label>
-        <select type="file" faims_attribute_type="measure" faims_sync="true" ref="Files" faims_attribute_name="Files">
+        <select faims_sync="true" type="camera" faims_attribute_name="Files" faims_attribute_type="measure" ref="Files">
           <label>{Files}</label>
           <item>
             <label>Options not loaded</label>
-            <value>0</value>
+            <value>Options not loaded</value>
           </item>
         </select>
-        <trigger ref="Button_Files">
-          <label>{Button_Files}</label>
+        <trigger ref="Files_Button_1">
+          <label>{Files}</label>
         </trigger>
       </group>
     </group>

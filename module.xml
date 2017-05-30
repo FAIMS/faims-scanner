@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!--@POSTPROC: ./postproc.sh-->
-<module suppressWarnings="true">
+<module>
 
 <User f="nodata">
   <User f="noscroll">
@@ -334,7 +334,7 @@
     <Notes/>
   </Notes>
   <Files>
-    <Files t="file"/>
+    <Files t="camera"/>
   </Files>
 </Scan_Record>
 
@@ -381,7 +381,7 @@
     for (i = 0; i < files.size(); i++) {
       ref      = "Scan_Record/Files/Files";
       filePath = files.get(i).getAbsolutePath();
-      addFile(ref, filePath);
+      addPicture(ref, filePath);
     }
   }
 
@@ -436,7 +436,7 @@
   otherVocabIds = Collections.synchronizedSet (new HashSet  ());
   for (postfix : subThemePostfixes) {
     propertyName = "Theme " + postfix.replaceAll("_", " ");
-    fetchVocab(propertyName, subThemeVocab, "getOtherVocabIds()");
+    //fetchVocab(propertyName, subThemeVocab, "getOtherVocabIds()");
   }
   getOtherVocabIds() {
     for (vocabEntry : subThemeVocab) {

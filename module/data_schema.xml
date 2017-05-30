@@ -1,434 +1,434 @@
-<?xml version="1.0"?>
+<?xml version='1.0' encoding='utf-8'?>
 <dataSchema>
   <ArchaeologicalElement name="Scan Record">
-    <description/>
-    <property name="ID" isIdentifier="true" type="measure">
-      <description/>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+    <description></description>
+    <property name="ID" type="measure" isIdentifier="true">
+      <description></description>
+      <formatString>{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}</formatString>
+      <appendCharacterString> - </appendCharacterString>
     </property>
     <property name="File Type" type="vocab">
-      <description/>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <description></description>
+      <formatString>{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}</formatString>
+      <appendCharacterString> - </appendCharacterString>
       <lookup>
         <term>{Article}
-<description/></term>
+<description></description></term>
         <term>{Book}
-<description/></term>
+<description></description></term>
         <term>{Document}
-<description/></term>
+<description></description></term>
         <term>{Image}
-<description/></term>
+<description></description></term>
         <term>{Oral}
-<description/></term>
+<description></description></term>
         <term>{Thesis}
-<description/></term>
+<description></description></term>
         <term>{Video}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Language" type="vocab">
-      <description/>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <description></description>
+      <formatString>{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}</formatString>
+      <appendCharacterString> - </appendCharacterString>
       <lookup>
         <term>{English}
-<description/></term>
+<description></description></term>
         <term>{Malay}
-<description/></term>
+<description></description></term>
         <term>{Chinese}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Repository" type="vocab">
-      <description/>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <description></description>
+      <formatString>{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}</formatString>
+      <appendCharacterString> - </appendCharacterString>
       <lookup>
         <term>{Australia___Australian_Red_Cross_Archives}
-<description/></term>
+<description></description></term>
         <term>{Australia___Australian_War_Memorial}
-<description/></term>
+<description></description></term>
         <term>{Australia___National_Archives__Canberra}
-<description/></term>
+<description></description></term>
         <term>{Australia___National_Archives__Sydney}
-<description/></term>
+<description></description></term>
         <term>{Australia___National_Archives__Melbourne}
-<description/></term>
+<description></description></term>
         <term>{Australia___National_Archives__Other}
-<description/></term>
+<description></description></term>
         <term>{Australia___National_Library}
-<description/></term>
+<description></description></term>
         <term>{Australia___Public_Record_Office_of_Victoria}
-<description/></term>
+<description></description></term>
         <term>{Australia___Salvation_Army_Archives}
-<description/></term>
+<description></description></term>
         <term>{Australia___State_Records___NSW}
-<description/></term>
+<description></description></term>
         <term>{Australia___State_Records___Other}
-<description/></term>
+<description></description></term>
         <term>{Internet}
-<description/></term>
+<description></description></term>
         <term>{Japan___Other}
-<description/></term>
+<description></description></term>
         <term>{Library___Other}
-<description/></term>
+<description></description></term>
         <term>{Malaysia___Other}
-<description/></term>
+<description></description></term>
         <term>{Singapore___National_Archives}
-<description/></term>
+<description></description></term>
         <term>{Singapore___Other}
-<description/></term>
+<description></description></term>
         <term>{United_Kingdom___Imperial_War_Museum}
-<description/></term>
+<description></description></term>
         <term>{United_Kingdom___National_Archives}
-<description/></term>
+<description></description></term>
         <term>{United_States___National_Archives_and_Record_Administration}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Garrison" type="vocab">
-      <description/>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <description></description>
+      <formatString>{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}</formatString>
+      <appendCharacterString> - </appendCharacterString>
       <lookup>
         <term>{Hong_Kong___Little_Sai_Wan}
-<description/></term>
+<description></description></term>
         <term>{Japan___Bofu}
-<description/></term>
+<description></description></term>
         <term>{Japan___Iwakuni}
-<description/></term>
+<description></description></term>
         <term>{Japan___Kure}
-<description/></term>
+<description></description></term>
         <term>{Japan___General}
-<description/></term>
+<description></description></term>
         <term>{Malaysia___Butterworth}
-<description/></term>
+<description></description></term>
         <term>{Malaysia___Terandak}
-<description/></term>
+<description></description></term>
         <term>{Singapore}
-<description/></term>
+<description></description></term>
         <term>{Thailand___Ubon}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Period From" type="measure">
-      <description/>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <description></description>
+      <formatString>{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}</formatString>
+      <appendCharacterString> - </appendCharacterString>
     </property>
     <property name="Period Till" type="measure">
-      <description/>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <description></description>
+      <formatString>{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}</formatString>
+      <appendCharacterString> - </appendCharacterString>
     </property>
     <property name="Doc Name" type="measure">
-      <description/>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <description></description>
+      <formatString>{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}</formatString>
+      <appendCharacterString> - </appendCharacterString>
     </property>
     <property name="File Reference" type="measure">
-      <description/>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <description></description>
+      <formatString>{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}</formatString>
+      <appendCharacterString> - </appendCharacterString>
     </property>
     <property name="Theme Architecture Space" type="vocab">
-      <description/>
-      <formatString><![CDATA[$1]]></formatString>
-      <appendCharacterString><![CDATA[, ]]></appendCharacterString>
+      <description></description>
+      <formatString>$1</formatString>
+      <appendCharacterString>, </appendCharacterString>
       <lookup>
         <term>{Base_layout}
-<description/></term>
+<description></description></term>
         <term>{Facilities}
-<description/></term>
+<description></description></term>
         <term>{Historiography_and_theory}
-<description/></term>
+<description></description></term>
         <term>{One_base_buildings}
-<description/></term>
+<description></description></term>
         <term>{Off_base_buildings}
-<description/></term>
+<description></description></term>
         <term>{Security}
-<description/></term>
+<description></description></term>
         <term>{Other}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Theme Crime Punishment" type="vocab">
-      <description/>
-      <formatString><![CDATA[$1]]></formatString>
-      <appendCharacterString><![CDATA[, ]]></appendCharacterString>
+      <description></description>
+      <formatString>$1</formatString>
+      <appendCharacterString>, </appendCharacterString>
       <lookup>
         <term>{Historiography_and_theory}
-<description/></term>
+<description></description></term>
         <term>{Local_law}
-<description/></term>
+<description></description></term>
         <term>{Military_law}
-<description/></term>
+<description></description></term>
         <term>{Case_law}
-<description/></term>
+<description></description></term>
         <term>{Other}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Theme Economics" type="vocab">
-      <description/>
-      <formatString><![CDATA[$1]]></formatString>
-      <appendCharacterString><![CDATA[, ]]></appendCharacterString>
+      <description></description>
+      <formatString>$1</formatString>
+      <appendCharacterString>, </appendCharacterString>
       <lookup>
         <term>{Base}
-<description/></term>
+<description></description></term>
         <term>{Historiography_and_theory}
-<description/></term>
+<description></description></term>
         <term>{Local_economy}
-<description/></term>
+<description></description></term>
         <term>{Shopping}
-<description/></term>
+<description></description></term>
         <term>{Withdrawal_impact}
-<description/></term>
+<description></description></term>
         <term>{Other}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Theme Education" type="vocab">
-      <description/>
-      <formatString><![CDATA[$1]]></formatString>
-      <appendCharacterString><![CDATA[, ]]></appendCharacterString>
+      <description></description>
+      <formatString>$1</formatString>
+      <appendCharacterString>, </appendCharacterString>
       <lookup>
         <term>{Curriculum}
-<description/></term>
+<description></description></term>
         <term>{Facilities}
-<description/></term>
+<description></description></term>
         <term>{Historiography_and_theory}
-<description/></term>
+<description></description></term>
         <term>{Parents}
-<description/></term>
+<description></description></term>
         <term>{Schools}
-<description/></term>
+<description></description></term>
         <term>{Students}
-<description/></term>
+<description></description></term>
         <term>{Teachers}
-<description/></term>
+<description></description></term>
         <term>{Other}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Theme Gender" type="vocab">
-      <description/>
-      <formatString><![CDATA[$1]]></formatString>
-      <appendCharacterString><![CDATA[, ]]></appendCharacterString>
+      <description></description>
+      <formatString>$1</formatString>
+      <appendCharacterString>, </appendCharacterString>
       <lookup>
         <term>{Children}
-<description/></term>
+<description></description></term>
         <term>{Fathers}
-<description/></term>
+<description></description></term>
         <term>{Historiography_and_theory}
-<description/></term>
+<description></description></term>
         <term>{Husbands}
-<description/></term>
+<description></description></term>
         <term>{Mothers}
-<description/></term>
+<description></description></term>
         <term>{Sexual_Relations___with_other_Australians}
-<description/></term>
+<description></description></term>
         <term>{Sexual_Relations___with_Locally_Employed_Civilians}
-<description/></term>
+<description></description></term>
         <term>{Sexual_Relations___other}
-<description/></term>
+<description></description></term>
         <term>{Wives}
-<description/></term>
+<description></description></term>
         <term>{Women}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Theme Host Communities" type="vocab">
-      <description/>
-      <formatString><![CDATA[$1]]></formatString>
-      <appendCharacterString><![CDATA[, ]]></appendCharacterString>
+      <description></description>
+      <formatString>$1</formatString>
+      <appendCharacterString>, </appendCharacterString>
       <lookup>
         <term>{Interactions}
-<description/></term>
+<description></description></term>
         <term>{Historiography_and_theory}
-<description/></term>
+<description></description></term>
         <term>{Opposition}
-<description/></term>
+<description></description></term>
         <term>{Perceptions}
-<description/></term>
+<description></description></term>
         <term>{Locally_Employed_Civilians}
-<description/></term>
+<description></description></term>
         <term>{Other}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Theme Legacy Remembering" type="vocab">
-      <description/>
-      <formatString><![CDATA[$1]]></formatString>
-      <appendCharacterString><![CDATA[, ]]></appendCharacterString>
+      <description></description>
+      <formatString>$1</formatString>
+      <appendCharacterString>, </appendCharacterString>
       <lookup>
         <term>{Australians}
-<description/></term>
+<description></description></term>
         <term>{Local_community}
-<description/></term>
+<description></description></term>
         <term>{Historiography_and_theory}
-<description/></term>
+<description></description></term>
         <term>{Other}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Theme Media" type="vocab">
-      <description/>
-      <formatString><![CDATA[$1]]></formatString>
-      <appendCharacterString><![CDATA[, ]]></appendCharacterString>
+      <description></description>
+      <formatString>$1</formatString>
+      <appendCharacterString>, </appendCharacterString>
       <lookup>
         <term>{Electronic___Local}
-<description/></term>
+<description></description></term>
         <term>{Electronic___Australian}
-<description/></term>
+<description></description></term>
         <term>{Electronic___Other}
-<description/></term>
+<description></description></term>
         <term>{Historiography_and_theory}
-<description/></term>
+<description></description></term>
         <term>{Print___Local}
-<description/></term>
+<description></description></term>
         <term>{Print___Australian}
-<description/></term>
+<description></description></term>
         <term>{Print___Other}
-<description/></term>
+<description></description></term>
         <term>{Other}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Theme Medical" type="vocab">
-      <description/>
-      <formatString><![CDATA[$1]]></formatString>
-      <appendCharacterString><![CDATA[, ]]></appendCharacterString>
+      <description></description>
+      <formatString>$1</formatString>
+      <appendCharacterString>, </appendCharacterString>
       <lookup>
         <term>{Case_History}
-<description/></term>
+<description></description></term>
         <term>{Facilities}
-<description/></term>
+<description></description></term>
         <term>{Historiography_and_theory}
-<description/></term>
+<description></description></term>
         <term>{Local_communities}
-<description/></term>
+<description></description></term>
         <term>{Other}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Theme Military" type="vocab">
-      <description/>
-      <formatString><![CDATA[$1]]></formatString>
-      <appendCharacterString><![CDATA[, ]]></appendCharacterString>
+      <description></description>
+      <formatString>$1</formatString>
+      <appendCharacterString>, </appendCharacterString>
       <lookup>
         <term>{Accidents}
-<description/></term>
+<description></description></term>
         <term>{Equipment}
-<description/></term>
+<description></description></term>
         <term>{Families_and_dependents}
-<description/></term>
+<description></description></term>
         <term>{Historiography_and_theory}
-<description/></term>
+<description></description></term>
         <term>{Host_military}
-<description/></term>
+<description></description></term>
         <term>{Justice}
-<description/></term>
+<description></description></term>
         <term>{Logistics}
-<description/></term>
+<description></description></term>
         <term>{Operations}
-<description/></term>
+<description></description></term>
         <term>{Personnel}
-<description/></term>
+<description></description></term>
         <term>{Other}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Theme Politics" type="vocab">
-      <description/>
-      <formatString><![CDATA[$1]]></formatString>
-      <appendCharacterString><![CDATA[, ]]></appendCharacterString>
+      <description></description>
+      <formatString>$1</formatString>
+      <appendCharacterString>, </appendCharacterString>
       <lookup>
         <term>{Colonialism}
-<description/></term>
+<description></description></term>
         <term>{Garrison___Establishment}
-<description/></term>
+<description></description></term>
         <term>{Garrison___Operation}
-<description/></term>
+<description></description></term>
         <term>{Garrison___Withdrawal}
-<description/></term>
+<description></description></term>
         <term>{Historiography_and_theory}
-<description/></term>
+<description></description></term>
         <term>{Relations___Bilateral___Singapore}
-<description/></term>
+<description></description></term>
         <term>{Relations___Bilateral___Malaysia}
-<description/></term>
+<description></description></term>
         <term>{Relations___Bilateral___Hong_Kong}
-<description/></term>
+<description></description></term>
         <term>{Relations___Bilateral___Japan}
-<description/></term>
+<description></description></term>
         <term>{Relations___Bilateral___NZ}
-<description/></term>
+<description></description></term>
         <term>{Relations___Bilateral___UK}
-<description/></term>
+<description></description></term>
         <term>{Relations___Bilateral___USA}
-<description/></term>
+<description></description></term>
         <term>{Relations___Regional}
-<description/></term>
+<description></description></term>
         <term>{Relations___International}
-<description/></term>
+<description></description></term>
         <term>{White_Australia_Policy}
-<description/></term>
+<description></description></term>
         <term>{Other}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Theme Race" type="vocab">
-      <description/>
-      <formatString><![CDATA[$1]]></formatString>
-      <appendCharacterString><![CDATA[, ]]></appendCharacterString>
+      <description></description>
+      <formatString>$1</formatString>
+      <appendCharacterString>, </appendCharacterString>
       <lookup>
         <term>{Interaction_engagement}
-<description/></term>
+<description></description></term>
         <term>{Historiography_and_theory}
-<description/></term>
+<description></description></term>
         <term>{Language_and_terms}
-<description/></term>
+<description></description></term>
         <term>{White_Australia_Policy}
-<description/></term>
+<description></description></term>
         <term>{Other}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Theme Social" type="vocab">
-      <description/>
-      <formatString><![CDATA[$1]]></formatString>
-      <appendCharacterString><![CDATA[, ]]></appendCharacterString>
+      <description></description>
+      <formatString>$1</formatString>
+      <appendCharacterString>, </appendCharacterString>
       <lookup>
         <term>{Families}
-<description/></term>
+<description></description></term>
         <term>{Food}
-<description/></term>
+<description></description></term>
         <term>{Historiography_and_theory}
-<description/></term>
+<description></description></term>
         <term>{Housing}
-<description/></term>
+<description></description></term>
         <term>{Interaction_engagement}
-<description/></term>
+<description></description></term>
         <term>{Relationships}
-<description/></term>
+<description></description></term>
         <term>{Sport}
-<description/></term>
+<description></description></term>
         <term>{Other}
-<description/></term>
+<description></description></term>
       </lookup>
     </property>
     <property name="Notes" type="measure">
-      <description/>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <description></description>
+      <formatString>{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}</formatString>
+      <appendCharacterString> - </appendCharacterString>
     </property>
     <property name="Files" type="file" file="true" thumbnail="true">
-      <description/>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <description></description>
+      <formatString>{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}</formatString>
+      <appendCharacterString> - </appendCharacterString>
     </property>
   </ArchaeologicalElement>
 </dataSchema>
