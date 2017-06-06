@@ -1,0 +1,21 @@
+#!/usr/bin/env bsh
+
+assert(boolean condition) {
+  if (condition)
+    return;
+
+  print(
+    "Test failed: " +
+    "Line: " + this.namespace.getInvocationLine() +
+    ": "     + this.namespace.getInvocationText() +
+    ". "     + this.callstack
+  );
+}
+
+sourceRelative("mock.bsh");
+sourceRelative("../module/ui_logic.bsh");
+try {
+  sourceRelative("tests.bsh");
+} catch (Exception e) {
+  print("No tests implemented. Tests should be placed in `tests/tests.bsh`.");
+}

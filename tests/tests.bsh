@@ -1,0 +1,2 @@
+PERF_TYPE_TREE.getDescendant("0").data = 3;
+assert(getNumDummyRecords() == 4);

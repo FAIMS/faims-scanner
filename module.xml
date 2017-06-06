@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!--@POSTPROC: ./postproc.sh-->
-<module>
+<module test_mode="true">
 
 <User f="nodata">
   <User f="noscroll">

@@ -1,5 +1,5 @@
 /*
- * GENERATED WITH FAIMS-TOOLS, SHA1: e9f254301bc03c5fbe3f6a72b0ee3dabb8841734
+ * GENERATED WITH FAIMS-TOOLS, SHA1: 5c89a065e1158915bb1f16cb635e385b51d5c1f3
  */
 import android.util.Log;
 
@@ -28,9 +28,18 @@ if (isNull(USER_MENU_PATH)) {
   Log.w("", "`USER_MENU_PATH` is empty or null");
 }
 
+boolean isInUnitTestTime() {
+  String pwd = System.getProperty("user.dir");
+  return !pwd.startsWith("/sdcard/");
+}
+
 /******************************************************************************/
 /*                                STRING UTILS                                */
 /******************************************************************************/
+
+/* Works similarly to Java's String.replaceFirst, except the `needle` is a
+ * string instead of a regex.
+ */
 String replaceFirst(String haystack, String needle, String replacement) {
   i = haystack.indexOf(needle);
   if (i == -1)           return haystack;
@@ -44,13 +53,23 @@ String replaceFirst(String haystack, String replacement) {
   return replaceFirst(haystack, "%s", replacement);
 }
 
-String dbReplaceFirst(String haystack, String needle, String replacement) {
+/* Replaces `placeholder` in an SQL `query` with `replacement`. The following
+ * example returns the string
+ * "SELECT * FROM table WHERE col1 = 'my replacement'":
+ *
+ * dbReplaceFirst(
+ *     "SELECT * FROM table WHERE col1 = {my_placeholder}",
+ *     "{my_placeholder}",
+ *     "my replacement"
+ * );
+ */
+String dbReplaceFirst(String query, String placeholder, String replacement) {
   String escapedReplacement = DatabaseUtils.sqlEscapeString(replacement);
-  return replaceFirst(haystack, needle, escapedReplacement);
+  return replaceFirst(query, placeholder, escapedReplacement);
 }
 
-String dbReplaceFirst(String haystack, String replacement) {
-  return dbReplaceFirst(haystack, "%s", replacement);
+String dbReplaceFirst(String query, String replacement) {
+  return dbReplaceFirst(query, "%s", replacement);
 }
 
 String translate(String s, Map m) {
@@ -791,8 +810,8 @@ TimedFetchCallback(String query, FetchCallback cb, int callerIdx) {
     updateQuery += "             query,";
     updateQuery += "             queryStartMs,";
     updateQuery += "             queryStopMs,";
-    updateQuery += "             numAentvalue,";
     updateQuery += "             numArchentity,";
+    updateQuery += "             numAentvalue,";
     updateQuery += "             numRelationship,";
     updateQuery += "             numAentreln";
     updateQuery += " )    SELECT %s, %s, %s, %s, %s, %s, a, av, r, ar";
@@ -1045,9 +1064,8 @@ void saveArchEnts(tree, String parentUuid) {
 }
 
 void createDummyRecords() {
-  // Unless syncing is disabled, 'database locked' errors will happen
-  setFileSyncEnabled(false);
-  setSyncEnabled    (false);
+  int  n = getNumDummyRecords();
+  dialog = showBusy("{perf_dummy_busy_head}", n + " {perf_dummy_busy_body}");
 
   enqueueTestFiles("createDummyRecordsRecursively()");
 }
@@ -1056,8 +1074,6 @@ void createDummyRecordsRecursively() {
   int n = getNumDummyRecords();
   PERF_NUM_CBS_TODO_SAVE = new AtomicInteger(n);
   PERF_NUM_CBS_DONE_SAVE = new AtomicInteger(0);
-
-  dialog = showBusy("{perf_dummy_busy_head}", n + " {perf_dummy_busy_body}");
 
   for (child : PERF_TYPE_TREE.getChildren())
     saveArchEnts(child, null);
@@ -1107,29 +1123,56 @@ void checkEnqueueTestFilesIsDone(String onDone) {
 
 PerfImageDownloader() {
   void run() {
+    if (isInUnitTestTime())
+      return;
+
     String filStr = "/sdcard/faims/modules/" + getModuleId() +
         "/files/app/test.jpg";
-    String urlStr = "http://placeholdit.imgix.net/" +
-        "~text?txtsize=100&txt=TEST&w=200&h=200&fm=jpg";
+    String urlStr = "https://raw.githubusercontent.com/FAIMS/FAIMS-Tools/" +
+        "autogen-py/test-images/lenna-4096x4096.jpg";
 
-    // Download test image
-    new File(filStr).getParentFile().mkdirs();
+    if (detectFile(filStr))
+      return;
 
-    long tenMb = 10 * 1024 * 1024;
-    URL urlObj = new URL(urlStr);
-    ReadableByteChannel in  = Channels.newChannel(urlObj.openStream());
-    FileChannel out = new FileOutputStream(filStr).getChannel();
-    out.transferFrom(in, 0, tenMb);
+    try {
+      URL           urlObj = new URL(urlStr);
+      URLConnection urlCon = urlObj.openConnection();
+
+      new File(filStr).getParentFile().mkdirs();
+
+      InputStream      is  = urlCon.getInputStream();
+      FileOutputStream fos = new FileOutputStream(filStr);
+
+      byte[] buffer = new byte[4096];
+      int len;
+
+      // While we have availble data, continue downloading and storing to local
+      // file
+      while ((len = is.read(buffer)) > 0)
+        fos.write(buffer, 0, len);
+
+      if (is  != null) is .close();
+      if (fos != null) fos.close();
+    } catch (Exception e) {
+      Log.e("PerfImageDownloader.run()", e.getMessage());
+    }
 
     // Set `PERF_TEST_IMG` if the file was created successfully
-    File newImg = new File(filStr);
-    if (newImg.length() > 0)
-      PERF_TEST_IMG = filStr;
+    detectFile(filStr);
   }
 
   void start() {
     Runnable r = PerfImageDownloader();
     new Thread(r).start();
+  }
+
+  boolean detectFile(String filStr) {
+    File newImg = new File(filStr);
+    if (newImg.length() > 0) {
+      PERF_TEST_IMG = filStr;
+      return true;
+    }
+    return false;
   }
 
   return this;
@@ -1167,8 +1210,8 @@ void enableRecordCreation() {
   showWarning("{perf_create_on_head}", "{perf_create_on_body}");
 }
 
-boolean isInTestTime() {
-  return false;
+boolean isInPerfTestTime() {
+  return true;
 }
 
 // Produce entity number specification
@@ -1259,6 +1302,15 @@ void checkSetDummyRecordQuantityIsDone() {
 }
 
 void verifyCreateDummyRecords() {
+  // Unless syncing is disabled, 'database locked' errors will happen
+  setFileSyncEnabled(false);
+  setSyncEnabled    (false);
+
+  if (isSyncEnabled()) {
+    showWarning("{perf_dummy_err_head}", "{perf_dummy_err_body}");
+    return;
+  }
+
   showAlert(
       "{perf_wiz_head}",
       "{perf_wiz_body}",
@@ -1275,7 +1327,7 @@ void setUpPerfActionBarItems() {
   String userMenuTabGroup = getTabGroupRef(USER_MENU_PATH);
   if (!isDisplayed(userMenuTabGroup))
     return;
-  if (!isInTestTime())
+  if (!isInPerfTestTime())
     return;
 
   ActionButtonCallback createDummyRecords = new ActionButtonCallback() {
@@ -1314,7 +1366,7 @@ void setUpPerfActionBarItems() {
 }
 
 void setUpPerfTestMode() {
-  if (!isInTestTime())
+  if (!isInPerfTestTime())
     return;
 
   // Download test image
@@ -1344,7 +1396,7 @@ void insertIntoLocalSettings(String key, String val) {
   String q = "REPLACE INTO localSettings(key, value) VALUES(%s, %s)";
   q = dbReplaceFirst(q, key);
   q = dbReplaceFirst(q, val);
-  fetchOne(q);
+  timedFetchOne(q);
 }
 
 void insertIntoLocalSettings(String key, Integer val) {
@@ -1384,7 +1436,7 @@ void setFieldValueFromLocalSettings(
     }
   };
 
-  fetchOne(q, set);
+  timedFetchOne(q, set);
 }
 
 void setFieldValueFromLocalSettings(
@@ -1787,6 +1839,9 @@ void fetchMenuValues(String cb) {
 
   FetchCallback populateHashMap = new FetchCallback() {
     onFetch(List result) {
+      if (result == null)
+        result = new ArrayList();
+
       for (List row : result) {
         String vocabId   = row.get(0);
         String vocabName = row.get(1);
@@ -1810,7 +1865,7 @@ void fetchMenuValues(String cb) {
     }
   };
 
-  fetchAll(q, populateHashMap);
+  timedFetchAll(q, populateHashMap);
 }
 
 fetchMenuValues("makeVocabs()");
@@ -1835,6 +1890,74 @@ String getFieldValue(String ref, Boolean doConvertVocabIds) {
  */
 String getMenuValue(String ref) {
   return getFieldValue(ref, true);
+}
+
+/******************************************************************************/
+/*                                    GPS                                     */
+/******************************************************************************/
+
+
+void updateGPSDiagnostics() {
+  String diagnosticsRef = "";
+  if (diagnosticsRef.equals("")) {
+    return;
+  }
+
+  String status         = "";
+  String previousStatus = getFieldValue(diagnosticsRef);
+  String notInitialised = "{GPS_is_not_initialised}";
+
+  // Check if GPS is initialised or was previously initialised.
+  if (!isExternalGPSOn() && !isInternalGPSOn()) {
+    if (!isNull(previousStatus) && !previousStatus.equals(notInitialised)) { // previous gps status is some last valid coordinate.
+      // This is hackish. Arch16n substitution happens only at display-time, but the following if clause requires substitution to have happened at run-time
+      String error = "";
+      error = "{GPS_is_no_longer_initialised}. {Previous_status}:";
+      setFieldValue(diagnosticsRef, error);   // Arch16n entry is substituted after this
+      error = getFieldValue(diagnosticsRef);
+
+      // check that error message wasn't previously appended to the previous status message.
+      if (previousStatus.length()    >= error.length() &&
+          previousStatus.subSequence(0, error.length()).equals(error)) {
+        status = previousStatus;
+      } else {
+        status = error + "\n" + previousStatus;
+      }
+    } else {
+      status = notInitialised;
+    }
+  } else {
+    status += "{Internal_GPS}: ";
+    if (isInternalGPSOn())
+    {
+      status += "{on}";
+    } else {
+      status += "{off}";
+    }
+    status += "\nExternal GPS: ";
+    if (isExternalGPSOn())
+    {
+      if (isBluetoothConnected()) {
+        status += "{on_and_bluetooth_connected}";
+      } else {
+        status += "{on_and_bluetooth_disconnected}";
+      }
+    } else {
+      status += "{off}";
+    }
+    Object position = getGPSPosition();
+    if (position != null) {
+      Object projPosition = getGPSPositionProjected();
+      status += "\n{Latitude}: " + position.getLatitude();
+      status += "   {Longitude}: " + position.getLongitude();
+      status += "\n{Northing}: " + projPosition.getLatitude();
+      status += "   {Easting}: " + projPosition.getLongitude();
+      status += "\n{Accuracy}: " + getGPSEstimatedAccuracy();
+    } else {
+      status += "\n{Position}: {no_GPS_position_could_be_found}";
+    }
+  }
+  setFieldValue(diagnosticsRef, status);
 }
 
 /******************************************************************************/
@@ -1931,74 +2054,6 @@ addActionBarItem("external_gps", new ToggleActionButtonCallback() {
 });
 
 /******************************************************************************/
-/*                                    GPS                                     */
-/******************************************************************************/
-
-
-void updateGPSDiagnostics() {
-  String diagnosticsRef = "";
-  if (diagnosticsRef.equals("")) {
-    return;
-  }
-
-  String status         = "";
-  String previousStatus = getFieldValue(diagnosticsRef);
-  String notInitialised = "{GPS_is_not_initialised}";
-
-  // Check if GPS is initialised or was previously initialised.
-  if (!isExternalGPSOn() && !isInternalGPSOn()) {
-    if (!isNull(previousStatus) && !previousStatus.equals(notInitialised)) { // previous gps status is some last valid coordinate.
-      // This is hackish. Arch16n substitution happens only at display-time, but the following if clause requires substitution to have happened at run-time
-      String error = "";
-      error = "{GPS_is_no_longer_initialised}. {Previous_status}:";
-      setFieldValue(diagnosticsRef, error);   // Arch16n entry is substituted after this
-      error = getFieldValue(diagnosticsRef);
-
-      // check that error message wasn't previously appended to the previous status message.
-      if (previousStatus.length()    >= error.length() &&
-          previousStatus.subSequence(0, error.length()).equals(error)) {
-        status = previousStatus;
-      } else {
-        status = error + "\n" + previousStatus;
-      }
-    } else {
-      status = notInitialised;
-    }
-  } else {
-    status += "{Internal_GPS}: ";
-    if (isInternalGPSOn())
-    {
-      status += "{on}";
-    } else {
-      status += "{off}";
-    }
-    status += "\nExternal GPS: ";
-    if (isExternalGPSOn())
-    {
-      if (isBluetoothConnected()) {
-        status += "{on_and_bluetooth_connected}";
-      } else {
-        status += "{on_and_bluetooth_disconnected}";
-      }
-    } else {
-      status += "{off}";
-    }
-    Object position = getGPSPosition();
-    if (position != null) {
-      Object projPosition = getGPSPositionProjected();
-      status += "\n{Latitude}: " + position.getLatitude();
-      status += "   {Longitude}: " + position.getLongitude();
-      status += "\n{Northing}: " + projPosition.getLatitude();
-      status += "   {Easting}: " + projPosition.getLongitude();
-      status += "\n{Accuracy}: " + getGPSEstimatedAccuracy();
-    } else {
-      status += "\n{Position}: {no_GPS_position_could_be_found}";
-    }
-  }
-  setFieldValue(diagnosticsRef, status);
-}
-
-/******************************************************************************/
 /*                                 USER LOGIN                                 */
 /******************************************************************************/
 void populateListForUsers(){
@@ -2013,7 +2068,7 @@ void populateListForUsers(){
   q += "   FROM user ";
   q += "  WHERE userdeleted is null";
 
-  fetchAll(q, new FetchCallback() {
+  timedFetchAll(q, new FetchCallback() {
     onFetch(result) {
       populateList(USER_MENU_PATH, result);
     }
@@ -2430,7 +2485,7 @@ void newRecord(String tabgroup, boolean doUpdateRelVars) {
         newRecord(tabgroup, false);
       }
     };
-    fetchAll(q, updateRelVars);
+    timedFetchAll(q, updateRelVars);
     return;
   }
 
@@ -2531,6 +2586,10 @@ void loadEntity(Boolean isDropdown) {
 }
 
 void loadEntityFrom(String entityID) {
+  loadEntityFrom(entityID, "");
+}
+
+void loadEntityFrom(String entityID, String onFail) {
   if (isNull(entityID)) {
     return;
   }
@@ -2540,7 +2599,7 @@ void loadEntityFrom(String entityID) {
                            "  JOIN aenttype " +
                            " USING (aenttypeid) " +
                            " WHERE uuid = '" + entityID + "'";
-  fetchAll(getEntTypeNameQ, new FetchCallback() {
+  timedFetchAll(getEntTypeNameQ, new FetchCallback() {
     onFetch(result) {
       if (
           result               == null ||
@@ -2550,6 +2609,7 @@ void loadEntityFrom(String entityID) {
         String head  = "{err_load_entity_head}";
         String body  = "{err_load_entity_body}";
         showWarning(head, body);
+        execute(onFail);
         return;
       }
 
@@ -2558,6 +2618,9 @@ void loadEntityFrom(String entityID) {
       eval(loadFunction);
     }
   });
+}
+
+void showLoadEntityWarning() {
 }
 
 
@@ -2730,7 +2793,7 @@ void search(){
   searchQuery = dbReplaceFirst(searchQuery, "{type}", type);
   searchQuery = dbReplaceFirst(searchQuery, "{type}", type);
 
-  populateCursorList(refEntityList, searchQuery, 25);
+  timedPopulateCursorList(refEntityList, searchQuery, 25);
   refreshTabgroupCSS("Control");
 
   Log.d("Module", "Search query: " + searchQuery);
@@ -2818,7 +2881,7 @@ void fillInGPS(String tabgroup) {
                  "  FROM latestnondeletedarchent, vocabulary " +
                  " WHERE uuid = '" + currentUuid + "';";
 
-  fetchOne(query, new FetchCallback() {
+  timedFetchOne(query, new FetchCallback() {
     onFetch(result) {
       print("[fillInGPS()] Fetched DB transformed geometry: " + result);
       setFieldValue(tabgroupToTabRef.get(tabgroup) + "/Longitude" , result.get(0));
@@ -2849,7 +2912,11 @@ void clearGpsInTab(String tabRef) {
 /******************************************************************************/
 /*               LOADING AND CREATION OF RECORDS FROM QR CODES                */
 /******************************************************************************/
-void bindQrScanning(String refButton, String refField, boolean isChild) {
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+
+void bindQrScanning(String refButton, String refChild, boolean isChild) {
   String event = "click";
 
   String parentTabGroup;
@@ -2858,68 +2925,38 @@ void bindQrScanning(String refButton, String refField, boolean isChild) {
 
   String stmt = fun2str(
       "scanRecordFromQrCode",
-      new Object[]{parentTabGroup, refField}
+      new Object[]{parentTabGroup, refChild}
   );
 
   addOnEvent(refButton, event, stmt);
 }
 
-void scanRecordFromQrCode(String parentTabGroup, String refField) {
+void scanRecordFromQrCode(String parentTabGroup, String refChild) {
   String callback = fun2str(
       "loadOrCreateEntityFromScannedAttrib",
-      new Object[]{parentTabGroup, refField}
+      new Object[]{parentTabGroup, refChild}
   );
   scanCode(callback);
 }
 
 void loadOrCreateEntityFromScannedAttrib(
     String parentTabGroup,
-    String refField
+    String refChild
 ) {
-  String attrName = getAttributeName(refField);
-  String attribVal  = getLastScanContents();
+  String code = getLastScanContents();
 
-  String q = "";
-  q += "SELECT uuid ";
-  q += "  FROM latestnondeletedaentvalue ";
-  q += "  JOIN latestnondeletedarchent USING (uuid) ";
-  q += "  JOIN attributekey            USING (attributeid) ";
-  q += " WHERE attributename = {attrName} ";
-  q += "   AND measure       = {attribVal} ";
-  q  = dbReplaceFirst(q, "{attrName}",  attrName );
-  q  = dbReplaceFirst(q, "{attribVal}", attribVal);
+  String  uuidString  = "";
+  Pattern uuidPattern = Pattern.compile("(\\d{19})");
+  Matcher matcher     = uuidPattern.matcher(code);
+  while (matcher.find())
+    uuidString = matcher.group(1);
 
-  FetchCallback loadOrCreateEntity = new FetchCallback() {
-    onFetch(result) {
-      if (isNull(result) || result.size() == 0) {
-        createRecordFromScannedAttrib(parentTabGroup, refField);
-      } else {
-        String uuid = result.get(0).get(0);
-        loadEntityFrom(uuid);
-      }
-    }
-  };
+  if (isNull(uuidString)) {
+    showWarning("{load_scanned_err_head}", "{load_scanned_err_body}");
+    return;
+  }
 
-  fetchAll(q, loadOrCreateEntity);
-}
-
-void initScannedAttrib(String ref) {
-  String oldCode = getFieldValue(ref);
-  String newCode = getLastScanContents();
-
-  if (isNull(oldCode))
-    setFieldValue(ref, newCode);
-}
-
-void createRecordFromScannedAttrib(String parentTabGroup, String refField) {
-  String tabGroup = getTabGroupRef(refField);
-
-  if (isNull(parentTabGroup))
-    newRecord(tabGroup);
-  else
-    newRecord(tabGroup, parentTabGroup);
-
-  initScannedAttrib(refField);
+  loadEntityFrom(uuidString);
 }
 
 
@@ -2967,6 +3004,10 @@ void incAutoNum(String destPath) {
   setFieldValue(destPath, destVal);
   incField(sourcePath);
 }
+/******************************************************************************/
+/*                         POPULATION VIA <MARKDOWN>                          */
+/******************************************************************************/
+
 
 /******************************************************************************/
 /*                POPULATION OF ENTITY AND CHILD ENTITY LISTS                 */
@@ -3031,8 +3072,8 @@ void populateMenuWithEntities (
   else                    q = getChildEntitiesQ;
 
   switch (viewType) {
-    case "dropdown": fetchAll(q, cbPopulateDropDown); break;
-    case "list":     populateCursorList(ref, q, 25); break;
+    case "dropdown": timedFetchAll(q, cbPopulateDropDown); break;
+    case "list":     timedPopulateCursorList(ref, q, 25); break;
   }
 }
 

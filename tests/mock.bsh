@@ -1,0 +1,90 @@
+// CLASSES
+public interface FetchCallback {
+  void onFetch(Object result);
+}
+
+public interface ActionButtonCallback {
+  public String actionOnLabel();
+  public void actionOn();
+}
+
+public interface ToggleActionButtonCallback implements ActionButtonCallback {
+  public boolean isActionOff();
+  public String actionOffLabel();
+  public void actionOff();
+}
+
+public class GPSLocation {
+  public double getLongitude() { return 1.0; }
+  public double getLatitude() { return 1.0; }
+  public long getTimeStamp() { return 1L; }
+  public String toString() { return "string"; }
+}
+
+public class NameValuePair {
+  public NameValuePair(String name, String value) {}
+  public String getName(){ return "name"; }
+  public String getValue(){ return "value"; }
+  public String toString() { return "string"; }
+  public String toJSON(){ return "json"; }
+  public boolean equals(Object o) { return true; }
+}
+
+public class DatabaseUtils {
+  public static String sqlEscapeString(String s) {
+    return "'" + s + "'";
+  }
+}
+
+// POOR MAN'S PACKAGES:
+//  - android.os.Build.MODEL
+android() {
+  os() {
+    Build() {
+      MODEL = "unit-tesitng";
+      return this;
+    }
+
+    Build = Build();
+    return this;
+  }
+
+  os = os();
+  return this;
+}
+
+android = android();
+
+// FUNCTION DEFINITIONS
+Dialog cleanSyncedFiles() { return null; }
+Object getGPSEstimatedAccuracy() { return null;}
+Object getGPSPosition() { return new GPSLocation();}
+Object getGPSPositionProjected() { return new GPSLocation();}
+String getFieldValue(String s) { return ""; }
+String getModuleId() { return "module-id"; }
+boolean isBluetoothConnected() {return true;}
+boolean isExternalGPSOn() { return true;}
+boolean isInternalGPSOn() { return true;}
+boolean isNull(String s) { return s == null || "".equals(s); }
+void addActionBarItem(String s, ActionButtonCallback c) { if (c != null) c.actionOn(); }
+void addActionBarItem(String s, ToggleActionButtonCallback c) { if (c != null) c.actionOff(); }
+void execute(String s) {}
+void fetchAll(String s) { fetchAll(s, null); }
+void fetchAll(String s, FetchCallback c) { if (c != null) c.onFetch(null); }
+void fetchMenuValues(s) {}
+void fetchOne(String s) { fetchOne(s, null); }
+void fetchOne(String s, FetchCallback c) { if (c != null) c.onFetch(null); }
+void onEvent(String s1, String s2, String s3) {}
+void onFocus(String s1, String s2, String s3) {}
+void populateDropDown(String s, Collection c) {}
+void setFieldValue(String s1, String s2) {}
+void setFileSyncEnabled(boolean b) {}
+void setSyncDelay(float f) {}
+void setSyncEnabled(boolean b) {}
+void setSyncMaxInterval(float f) {}
+void setSyncMinInterval(float f) {}
+void showToast(String s) {}
+void showWarning(String s, String s) { }
+void startExternalGPS() {}
+void startInternalGPS() {}
+void stopGPS() {}
