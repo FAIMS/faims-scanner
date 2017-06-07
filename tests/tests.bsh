@@ -1,2 +1,8 @@
-PERF_TYPE_TREE.getDescendant("0").data = 3;
-assert(getNumDummyRecords() == 4);
+PERF_TYPE_TREE.getDescendant("0").data = 4;
+PERF_PHOTOS_PER_FIELD = 3;
+print(getNumDummyRecords());
+print(getNumPhotos());
+
+PERF_TEST_IMG = "path/to/file1";
+print("Creating...");
+createDummyRecords();

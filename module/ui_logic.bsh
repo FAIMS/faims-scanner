@@ -210,6 +210,18 @@ String getType(String ref) {
   else              return type;
 }
 
+List getRefs() {
+  return new ArrayList(REF_TO_TYPE.keySet());
+}
+
+List getRefsByType(String type) {
+  List refs = new ArrayList();
+  for (String ref : getRefs())
+    if (getType(ref).equals(type))
+      refs.add(ref);
+  return refs;
+}
+
 boolean hasData(String ref) {
   return DATA_REFS.contains(ref);
 }
@@ -634,7 +646,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import android.os.Build.MODEL;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-ConcurrentLinkedQueue PERF_FILES             = null;
+ConcurrentLinkedQueue PERF_FILES             = new ConcurrentLinkedQueue();
 AtomicInteger         PERF_NUM_CBS_DONE_FILE = null;
 AtomicInteger         PERF_NUM_CBS_DONE_SAVE = null;
 AtomicInteger         PERF_NUM_CBS_DONE_SET  = null;
@@ -644,6 +656,37 @@ AtomicInteger         PERF_NUM_CBS_TODO_SET  = null;
 boolean               PERF_ALLOW_CREATION    = false;
 String                PERF_TEST_IMG          = "";
                       PERF_TYPE_TREE         = null;
+int                   PERF_PHOTOS_PER_FIELD  = 1;
+
+int getNumPhotos() {
+  return getNumPhotos(PERF_TYPE_TREE);
+}
+
+int getNumPhotos(tree) {
+  if (tree == null) return 0;
+
+  int childSum = 0;
+  for (child : tree.getChildren())
+    childSum += getNumPhotos(child);
+
+  boolean isRoot = isNull(tree.label);
+  if (isRoot) return childSum;
+  else        return childSum + getNumPhotosAtNode(tree);
+}
+
+int getNumPhotosAtNode(tree) {
+  // Figure out how many camera refs there are at this node (i.e. in this arch
+  // ent).
+  List cameraRefs = getRefsByType("camera");
+  List cameraRefsAtNode = new ArrayList();
+  for (String ref : cameraRefs)
+    if (getArchEntType(ref).equals(tree.label))
+      cameraRefsAtNode.add(ref);
+
+  return getNumDummyRecordsAtNode(tree) *
+    cameraRefsAtNode.size() *
+    PERF_PHOTOS_PER_FIELD;
+}
 
 int getNumDummyRecords() {
   getNumDummyRecords(PERF_TYPE_TREE);
@@ -656,11 +699,17 @@ int getNumDummyRecords(tree) {
   for (child : tree.getChildren())
     childSum += getNumDummyRecords(child);
 
-  boolean isRoot   = isNull(tree.label);
-  int     thisNode =        tree.data;
+  boolean isRoot = isNull(tree.label);
+  if (isRoot) return childSum;
+  else        return childSum + getNumDummyRecordsAtNode(tree);
+}
 
-  if (isRoot) return 0        + 1        * childSum;
-  else        return thisNode + thisNode * childSum;
+int getNumDummyRecordsAtNode(tree) {
+  int sum = 1;
+  for (; tree.getParent() != null; tree = tree.getParent()) {
+    sum *= tree.data;
+  }
+  return sum;
 }
 
 Tree(String label, Object data) {
@@ -935,24 +984,20 @@ String randomInputValue(String ref, int len) {
     if (PERF_FILES.isEmpty()) {
       Log.e("randomInputValue()", "PERF_FILES empty, using empty string");
       return "";
-    } else {
+    } else
       return PERF_FILES.poll();
-    }
   else
     return getRandomString(len);
 }
 
-List getAttribs(String archEntType) {
-  List attribs = new ArrayList();
-  for (String ref : REF_TO_TYPE.keySet()) {
-    String archEntTypeActual = getArchEntType(ref);
-    if (!archEntType.equals(archEntTypeActual))
-      continue;
-    if (!hasData(ref))
-      continue;
-    if (hasMediaType(ref) && !getType(ref).equals("camera"))
-      continue;
+List getAttribsForRef(String ref) {
+  int numAttribs = 1;
+  if (!hasData(ref))                 numAttribs = 0;
+  if (hasMediaType(ref))             numAttribs = 0;
+  if (getType(ref).equals("camera")) numAttribs = PERF_PHOTOS_PER_FIELD;
 
+  List attribs = new ArrayList();
+  for (int i = 0; i < numAttribs; i++) {
     String attribName = getAttributeName(ref);
     String annotation = "";
     String vocab      = "";
@@ -975,6 +1020,15 @@ List getAttribs(String archEntType) {
   return attribs;
 }
 
+List getAttribsForArchEnt(String archEntType) {
+  List attribs = new ArrayList();
+  for (String ref : getRefs())
+    if (getArchEntType(ref).equals(archEntType))
+      attribs.addAll(getAttribsForRef(ref));
+
+  return attribs;
+}
+
 void displayRecordDigest(int numCreated) {
   String q = "";
   q += "   SELECT '{All}', count(*)";
@@ -993,6 +1047,8 @@ void displayRecordDigest(int numCreated) {
         body += numCreated + " {perf_digest_1_body_1}";
       body += " {perf_digest_1_body_2}";
 
+      if (result == null)
+        result = new ArrayList();
       for (List row : result) {
         String type = row.get(0);
         String num  = row.get(1);
@@ -1037,7 +1093,7 @@ PerfSaveCallback(tree, String parentUuid) {
       displayRecordDigest(cbsDone);
 
     if (newRecord)
-      saveRel(uuid);
+      super.saveRel(uuid);
 
     for (subtree : super.tree.getChildren())
       saveArchEnts(subtree, uuid);
@@ -1058,7 +1114,7 @@ void saveArchEnts(tree, String parentUuid) {
   cb                 = PerfSaveCallback(tree, parentUuid);
 
   for (int i = 0; i < numEnts; i++) {
-    List attribs = getAttribs(archEntName);
+    List attribs = getAttribsForArchEnt(archEntName);
     saveArchEnt(null, archEntName, (List) null, attribs, cb);
   }
 }
@@ -1084,33 +1140,35 @@ void enqueueTestFiles(String cb) {
 }
 
 void enqueueTestFiles(int numFiles, String cb) {
-  if (PERF_TEST_IMG == null || PERF_TEST_IMG.equals("")) {
-    Log.e("enqueueTestFiles()", "Could not enqueue test files");
+  if (isNull(PERF_TEST_IMG)) {
+    String head; String body;
+    head  = "Could Not Enqueue Test Files";
+    body  = "The master file from which test files are enqueued could not be ";
+    body += "found on disk.";
+    showWarning(head, body);
     return;
   }
 
-  // Set `PERF_FILES`
-  if (PERF_FILES == null)
-    PERF_FILES = new ConcurrentLinkedQueue();
-
   // Set `PERF_NUM_CBS_TODO_FILE` and `PERF_NUM_CBS_DONE_FILE`
-  int maxNumPhotosPerRecord = 2;
-  int n = getNumDummyRecords() * maxNumPhotosPerRecord
-      - PERF_FILES.size(); // No need to make files if there's enough in queue
-
-  PERF_NUM_CBS_TODO_FILE = new AtomicInteger(n);
+  int numPhotosToMake;
+  numPhotosToMake  = getNumPhotos();
+  numPhotosToMake -= PERF_FILES.size();
+  numPhotosToMake  = Math.max(0, numPhotosToMake);
+  // We're going to count returns from attachFile too, hence multiplication by 2
+  PERF_NUM_CBS_TODO_FILE = new AtomicInteger(2*numPhotosToMake);
   PERF_NUM_CBS_DONE_FILE = new AtomicInteger(0);
 
   // Make records
-  for (int i = 0; i < n; i++) {
+  for (int i = 0; i < numPhotosToMake; i++) {
     String fileName = attachFile(
         PERF_TEST_IMG,
         false,
         null,
-        "checkEnqueueTestFilesIsDone(\"" + escape(cb) + "\")"
+        fun2str("checkEnqueueTestFilesIsDone", cb)
     );
 
     PERF_FILES.add(fileName);
+    checkEnqueueTestFilesIsDone(cb);
   }
 }
 
