@@ -9,7 +9,7 @@
     1. Ensure that the “Next ID” is correct and click “Create New Record”.
 
 1. Take one or more photos:
-    1. With the new record still open, start the AZ Camera app.
+    1. With the new record still open, start the Open Camera app.
     1. Ensure that photos are being taken as .jpg files:
     1. Take a photo using the camera icon.
 
