@@ -33,3 +33,23 @@ For more details about the **Australia’s Asian Garrisons** please visit http:/
 
 If you have any questions about the module, please contact the FAIMS team at **enquiries@fedarch.org** and we will get back to you within one business day.
 
+## Screenshots:
+
+<p align="left">
+  <img src="https://github.com/FAIMS/faims-scanner/blob/master/screenshots/Screenshot_20170913-125208.png" width="250"/>
+  <img src="https://github.com/FAIMS/faims-scanner/blob/master/screenshots/Screenshot_20170913-125216.png" width="250"/>
+  <img src="https://github.com/FAIMS/faims-scanner/blob/master/screenshots/Screenshot_20170913-125229.png" width="250"/>
+</p>
+
+<p align="left">
+  <img src="https://github.com/FAIMS/faims-scanner/blob/master/screenshots/Screenshot_20170913-125248.png" width="250"/>
+  <img src="https://github.com/FAIMS/faims-scanner/blob/master/screenshots/Screenshot_20170913-125303.png" width="250"/>
+  <img src="https://github.com/FAIMS/faims-scanner/blob/master/screenshots/Screenshot_20170913-125312.png" width="250"/>
+</p>
+
+<p align="left">
+  <img src="https://github.com/FAIMS/faims-scanner/blob/master/screenshots/Screenshot_20170913-125320.png" width="250"/>
+  <img src="https://github.com/FAIMS/faims-scanner/blob/master/screenshots/Screenshot_20170913-125352.png" width="250"/>
+ </p>
+
+
