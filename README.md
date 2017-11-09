@@ -2,10 +2,10 @@
 This module was created for the **Australia’s Asian Garrisons**, based at Macquarie University, Sydney, and Monash University, Melbourne, Australia. The module has been designed to record archival documents in degraded conditions. The archives were often without stable internet connection, without access to scanner / photocopier with the exception of mobile phone for taking pictures. The module upon export from the server compiles taken photos into PDF format and automatically attaches available metadata, and provides OCR text version of the scanned document.
  
 ## Authorship:
-This module was co-developed by Prof. Sean Brawley at Macquarie University, Department of Modern History, Politics and International Relations and Shawn Ross and Brian Ballsun-Stanton at the FAIMS Project, Department of Ancient History, Macquarie University.
+This module was co-developed by Prof Sean Brawley at Macquarie University, Department of Modern History, Politics and International Relations and Shawn Ross and Brian Ballsun-Stanton at the FAIMS Project, Department of Ancient History, Macquarie University.
  
 ## Funding:
-Development of this module was funded by Australian Research Council Discovery Grant – ID: ARC DP160100750.
+Development of this module was funded by Australian Research Council Discovery Grant – ID: ARC DP160100750 and by the **Research Attraction and Acceleration Program (RAAP)** aimed to support innovation and investment in the New South Wales in 2016 and 2017.
 
 ## Date of release:
 April 2016
