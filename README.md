@@ -5,7 +5,7 @@ This module was created for the **Australia’s Asian Garrisons**, based at Macq
 This module was co-developed by Prof Sean Brawley at Macquarie University, Department of Modern History, Politics and International Relations and Shawn Ross and Brian Ballsun-Stanton at the FAIMS Project, Department of Ancient History, Macquarie University.
  
 ## Funding:
-Development of this module was funded by Australian Research Council Discovery Grant – ID: ARC DP160100750 and by the **Research Attraction and Acceleration Program (RAAP) NSW Department of Industry 16805/00** aimed to support innovation and investment in the New South Wales in 2016 and 2017.
+Development of this module was funded by **Australian Research Council Discovery Grant ARC DP160100750** and by the **Research Attraction and Acceleration Program (RAAP) NSW Department of Industry 16805/00** aimed to support innovation and investment in the New South Wales in 2016 and 2017.
 
 ## Date of release:
 April 2016
