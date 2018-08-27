@@ -23,6 +23,7 @@ This module is part of the **FAIMS Demo library** on our publicly accessible Dem
 * structured recording of archival metadata
 * automatically attaches recent photos taken on the device to the archival record (metadata)
 * upon export produces PDF with metadata, OCR scan of the document, OCR text file of the document
+* see [detailed instruction show to use the module](https://github.com/FAIMS/faims-scanner)
 
 ## This module can be used with no or minor modification for:
 * research in archives or libraries with restrictive use of scanners and photocopiers
