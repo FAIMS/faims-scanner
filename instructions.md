@@ -28,7 +28,7 @@
 
 ## Guide to the ‘FAIMS Scanner’ application
 
-<img src="XXX" width="450"/>
+<img src="https://github.com/FAIMS/faims-scanner/blob/master/FAIMS_SCANNER.JPG" width="450"/>
 
 
 ## Tips and tricks
